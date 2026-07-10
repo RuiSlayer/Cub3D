@@ -4,7 +4,11 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <../minilibx_opengl/mlx.h>
+# if defined(__APPLE__)
+# include "../libs/minilibx_opengl/mlx.h"
+# else
+# include "../libs/minilibx-linux/mlx.h"
+# endif
 
 /*
 ** Window configuration
@@ -89,7 +93,7 @@ int		close_game(t_cub *cub);
 */
 
 void	setup_hooks(t_cub *cub);
-int		handle_keypress(int keycode, t_cub *cub);
+int		handle_keypress(int keycode, void *param);
 
 /*
 ** Initialization
