@@ -1,13 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
+/*   Updated: 2026/07/13 17:02:47 by slayer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../libs/ft_get_next_line/get_next_line.h"
+# include "../libs/42libft/libft.h"
+# include "../libs/ft_dprintf/ft_printf.h"
+# include "math.h"
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # if defined(__APPLE__)
-# include "../libs/minilibx_opengl/mlx.h"
+#  include "../libs/minilibx_opengl/mlx.h"
 # else
-# include "../libs/minilibx-linux/mlx.h"
+#  include "../libs/minilibx-linux/mlx.h"
 # endif
 
 /*
@@ -35,9 +51,11 @@
 ** Event masks
 */
 
-# define MASK_KEY_PRESS (1L << 0)
-# define MASK_NO_EVENT 0L
-
+# define MASK_NO_EVENT    0L
+# define MASK_KEY_PRESS   1L   /* 1L << 0 */
+# define MASK_KEY_RELEASE 2L   /* 1L << 1 */
+# define MASK_EXPOSURE    4L   /* 1L << 2 */
+# define MASK_STRUCTURE   32L  /* 1L << 5 */
 /*
 ** Platform-specific keycodes
 */
@@ -59,6 +77,14 @@
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
 # endif
+
+enum e_directions
+{
+	NO,
+	SO,
+	WE,
+	EA
+};
 
 typedef struct s_img
 {
