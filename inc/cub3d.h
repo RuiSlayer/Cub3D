@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/13 17:02:47 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/14 01:36:27 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,56 @@ enum e_directions
 	EA
 };
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
+typedef struct s_player
+{
+	t_vec2	pos;    // position on the map, e.g. (23.5, 12.5)
+	t_vec2	dir;    // direction vector, e.g. (-1, 0)
+	t_vec2	plane;  // camera plane, perpendicular to dir
+}	t_player;
+
+typedef struct s_ray
+{
+	t_vec2	dir;
+	t_vec2	delta_dist;
+	t_vec2	side_dist;
+	t_point	map_pos;   // integer cell the ray is currently in
+	int		side;      // 0 = X-side hit, 1 = Y-side hit
+}	t_ray;
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
+
+typedef struct s_textures
+{
+	t_texture	dir[4];
+}	t_textures;
+
+typedef struct s_cell
+{
+	char			symbol;
+	int				texture_id;
+}	t_cell;
+
 typedef struct s_img
 {
 	void	*img;
@@ -105,7 +155,15 @@ typedef struct s_mlx
 typedef struct s_cub
 {
 	t_mlx	mlx;
+	t_textures textures;
 }	t_cub;
+
+/*
+** parcing and map loading
+*/
+int	load_map(char const *argv, t_cub cub);
+int	check_file_name(char const *argv);
+int	check_textures(char const *argv, t_cub cub);
 
 /*
 ** Cleanup and exit
