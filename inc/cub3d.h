@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 01:36:27 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/14 14:17:35 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,16 +154,17 @@ typedef struct s_mlx
 
 typedef struct s_cub
 {
-	t_mlx	mlx;
-	t_textures textures;
+	t_mlx	*mlx;
+	t_textures *textures;
 }	t_cub;
 
 /*
 ** parcing and map loading
 */
-int	load_map(char const *argv, t_cub cub);
+int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	check_textures(char const *argv, t_cub cub);
+int	load_textures(char const *argv, t_cub *cub);
+int	print_check_textures(int code);
 
 /*
 ** Cleanup and exit
@@ -183,7 +184,7 @@ int		handle_keypress(int keycode, void *param);
 ** Initialization
 */
 
-void	init_cub(t_cub *cub);
+int		init_cub(t_cub *cub);
 int		init_mlx(t_cub *cub);
 
 /*

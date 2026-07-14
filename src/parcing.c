@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 02:12:13 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/14 14:08:28 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,44 +41,48 @@ int	check_file_name(char const *argv)
 	return (0);
 }
 
-int	load_texture(t_cub *cub, t_texture *tex, char *path)
+static int	load_img(t_cub *cub, char *path, int i)
 {
-	tex->img = mlx_xpm_file_to_image(cub->mlx.mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-		return (1);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
-	if (!tex->addr)
-		return (1);
+	t_texture	tex;
+
+	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
+	if (!tex.img)
+		return (2);
+	tex.addr = mlx_get_data_addr(tex.img, &tex.bpp, &tex.line_len, &tex.endian);
+	if (!tex.addr)
+		return (2);
+	cub->textures->dir[i] = tex;
 	return (0);
 }
 
 //TODO function that tries to load texture
-static int	find_texture(char *texture, t_cub cub, int i)
+static int	find_texture(char *texture, t_cub *cub, int i)
 {
 	int		fd;
 	void	*img;
+	char	*path;
 
-	fd = open(texture, O_RDONLY);
+	path = ft_left_trim(5, texture);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	img = mlx_xpm_file_to_image(cub.mlx, ft_left_trim(5, texture), &img_width, &img_height);
-	if (!img)
-		return (1);
-	cub.textures.dir[i] = load_texture(mlx, "textures/north.xpm");
+	load_img(cub, path, i);
 	return (0);
 }
 
-int	check_textures(char const *argv, t_cub cub)
+int	load_textures(char const *argv, t_cub *cub)
 {
 	int					fd;
 	int					i;
 	char				*texture;
 	static const char	*g_dir_names[] = {"NO", "SO", "WE", "EA"};
+	int					error_code;
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	i = 0;
+	error_code = 0;
 	while (i < 4)
 	{
 		texture = get_next_line(fd);
@@ -86,8 +90,9 @@ int	check_textures(char const *argv, t_cub cub)
 			return (close(fd), 2);
 		if (ft_strcmp(ft_substr(texture, 0, 2) , g_dir_names[i]))
 			return (close(fd), 3);
-		if (find_texture(texture, cub, i))
-			return (close(fd), 4);
+		error_code = find_texture(texture, cub, i);
+		if (error_code)
+			return (close(fd), error_code);
 		i++;
 	}
 	return (close(fd), 0);

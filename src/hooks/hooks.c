@@ -19,6 +19,6 @@ int	handle_keypress(int keycode, void *param)
 
 void	setup_hooks(t_cub *cub)
 {
-	mlx_key_hook(cub->mlx.win, handle_keypress, cub);
-	mlx_hook(cub->mlx.win, 17, 0, close_game, cub);
+	mlx_key_hook(cub->mlx->win, handle_keypress, cub);
+	mlx_hook(cub->mlx->win, 17, 0, close_game, cub);
 }
