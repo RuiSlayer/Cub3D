@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   ft_trim_newline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 14:30:03 by slayer           ###   ########.fr       */
+/*   Created: 2026/07/14 23:15:29 by slayer            #+#    #+#             */
+/*   Updated: 2026/07/14 23:19:27 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3d.h"
+#include "libft.h"
 
-int	load_map(char const *argv, t_cub *cub)
+void	ft_trim_newline(char *str)
 {
-	if (check_file_name(argv))
-		return (1);
-	print_check_textures(load_textures(argv, cub));
-		return (1);
-	return (0);
+	size_t	len;
+
+	if (!str)
+		return ;
+	len = ft_strlen(str);
+	if (len > 0 && str[len - 1] == '\n')
+		str[len - 1] = '\0';
 }

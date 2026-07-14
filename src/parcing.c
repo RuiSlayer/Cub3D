@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 14:08:28 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/14 23:29:29 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,30 @@ static int	load_img(t_cub *cub, char *path, int i)
 	return (0);
 }
 
-//TODO function that tries to load texture
+static int	has_xpm_ext(char *path)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	if (len < 5)
+		return (0);
+	return (ft_strcmp(path + len - 4, ".xpm"));
+}
+
 static int	find_texture(char *texture, t_cub *cub, int i)
 {
 	int		fd;
-	void	*img;
 	char	*path;
 
-	path = ft_left_trim(5, texture);
+	path = ft_left_trim(3, texture);
+	if (!has_xpm_ext(path))
+		return (4);
+	ft_trim_newline(path);
+	printf("%s\n", path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (1);
+		return (5);
+	close(fd);
 	load_img(cub, path, i);
 	return (0);
 }

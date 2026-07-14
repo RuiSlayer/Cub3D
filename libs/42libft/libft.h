@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:21:47 by rucosta           #+#    #+#             */
-/*   Updated: 2026/07/14 01:57:47 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/14 23:19:10 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isspace(int c);
 long	ft_atol(const char *s);
 char	*ft_left_trim(unsigned int size, char *str);
+void	ft_trim_newline(char *str);
 #endif

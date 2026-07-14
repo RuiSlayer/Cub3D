@@ -5,8 +5,8 @@ CFLAGS		= -Wall -Wextra -Werror -g -O3 -std=gnu17
 
 UNAME_S		:= $(shell uname -s)
 
-LIBFT_DIR	= libs/42libft
-PRINTF_DIR	= libs/ft_dprintf
+LIBFT_DIR		= libs/42libft
+PRINTF_DIR		= libs/ft_dprintf
 
 LIBFT		= $(LIBFT_DIR)/libft.a
 PRINTF		= $(PRINTF_DIR)/libftprintf.a
@@ -44,7 +44,12 @@ SRCS		= \
 			src/init/init_mlx.c \
 			src/rendering/render_smoke.c \
 			src/hooks/hooks.c \
-			src/cleanup/free_mlx.c
+			src/cleanup/free_mlx.c \
+			src/error_printing.c \
+			src/init/load_map.c \
+			src/parcing.c \
+			libs/ft_get_next_line/get_next_line.c \
+			libs/ft_get_next_line/get_next_line_utils.c
 
 OBJ_DIR		= build
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
