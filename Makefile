@@ -47,7 +47,7 @@ SRCS		= \
 			src/cleanup/free_mlx.c \
 			src/error_printing.c \
 			src/init/load_map.c \
-			src/parcing.c \
+			src/parsing.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 

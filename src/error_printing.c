@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 13:22:24 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 15:12:35 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/15 23:07:07 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	print_check_textures(int code)
 {
+	if (code == 0)
+		return (0);
 	if (code == 1)
 		return (ft_dprintf(2, "Error\n can't open file!\n"), 1);
 	if (code == 2)

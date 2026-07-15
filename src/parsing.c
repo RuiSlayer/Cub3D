@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/14 23:29:29 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/15 23:05:19 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static int	load_img(t_cub *cub, char *path, int i)
 {
 	t_texture	tex;
 
-	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
+	*tex.width = TEXTURE_WIDTH;
+	*tex.height = TEXTURE_HEIGHT;
+	tex.img = mlx_xpm_file_to_image(cub->mlx, path, tex.width, tex.height);
 	if (!tex.img)
 		return (2);
 	tex.addr = mlx_get_data_addr(tex.img, &tex.bpp, &tex.line_len, &tex.endian);
@@ -79,36 +81,31 @@ static int	find_texture(char *texture, t_cub *cub, int i)
 	if (fd < 0)
 		return (5);
 	close(fd);
-	load_img(cub, path, i);
-	return (0);
+	return(load_img(cub, path, i));
 }
 
-int	load_textures(char const *argv, t_cub *cub)
+int	load_textures(char const *argv, t_cub *cub, int fd)
 {
-	int					fd;
 	int					i;
 	char				*texture;
 	static const char	*g_dir_names[] = {"NO", "SO", "WE", "EA"};
 	int					error_code;
 
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		return (1);
 	i = 0;
 	error_code = 0;
 	while (i < 4)
 	{
 		texture = get_next_line(fd);
 		if (!texture)
-			return (close(fd), 2);
+			return (2);
 		if (ft_strcmp(ft_substr(texture, 0, 2) , g_dir_names[i]))
-			return (close(fd), 3);
+			return (3);
 		error_code = find_texture(texture, cub, i);
 		if (error_code)
-			return (close(fd), error_code);
+			return (error_code);
 		i++;
 	}
-	return (close(fd), 0);
+	return (0);
 }
 
 // char	caracter_test(int i, int j, t_Level *level)
