@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/15 23:05:53 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/15 23:58:10 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ typedef struct s_texture
 {
 	void	*img;
 	char	*addr;
-	int		*width;
-	int		*height;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -166,7 +166,7 @@ typedef struct s_cub
 */
 int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	load_textures(char const *argv, t_cub *cub, int fd);
+int	load_textures(t_cub *cub, int fd);
 int	print_check_textures(int code);
 
 /*

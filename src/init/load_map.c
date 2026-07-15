@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/15 23:09:27 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/15 23:37:06 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	load_map(char const *argv, t_cub *cub)
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	if (print_check_textures(load_textures(argv, cub, fd)))
+	if (print_check_textures(load_textures(cub, fd)))
 		return (close(fd), 1);
 	
 	return (close(fd), 0);

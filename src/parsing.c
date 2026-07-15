@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/15 23:05:19 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/15 23:58:03 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ int	check_file_name(char const *argv)
 	return (0);
 }
 
-static int	load_img(t_cub *cub, char *path, int i)
+static int load_img(t_cub *cub, char *path, int i)
 {
 	t_texture	tex;
 
-	*tex.width = TEXTURE_WIDTH;
-	*tex.height = TEXTURE_HEIGHT;
-	tex.img = mlx_xpm_file_to_image(cub->mlx, path, tex.width, tex.height);
+	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
 	if (!tex.img)
 		return (2);
 	tex.addr = mlx_get_data_addr(tex.img, &tex.bpp, &tex.line_len, &tex.endian);
 	if (!tex.addr)
+	{
+		mlx_destroy_image(cub->mlx, tex.img);
 		return (2);
+	}
 	cub->textures->dir[i] = tex;
 	return (0);
 }
@@ -84,7 +85,7 @@ static int	find_texture(char *texture, t_cub *cub, int i)
 	return(load_img(cub, path, i));
 }
 
-int	load_textures(char const *argv, t_cub *cub, int fd)
+int	load_textures(t_cub *cub, int fd)
 {
 	int					i;
 	char				*texture;
