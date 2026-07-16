@@ -1,6 +1,6 @@
 # Binary
 cub3D
-
+docker/Dockerfile
 # Object files
 *.o
 *.a
