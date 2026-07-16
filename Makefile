@@ -1,59 +1,31 @@
-###############################################################################
-# Program
-###############################################################################
-
 NAME		= cub3D
 
-###############################################################################
-# Compiler
-###############################################################################
-
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g
-
-###############################################################################
-# OS Detection
-###############################################################################
+CFLAGS		= -Wall -Wextra -Werror -g -O3 -std=gnu17
 
 UNAME_S		:= $(shell uname -s)
 
-###############################################################################
-# Libraries
-###############################################################################
-
-LIBFT_DIR	= libs/42libft
-PRINTF_DIR	= libs/ft_dprintf
+LIBFT_DIR		= libs/42libft
+PRINTF_DIR		= libs/ft_dprintf
 
 LIBFT		= $(LIBFT_DIR)/libft.a
 PRINTF		= $(PRINTF_DIR)/libftprintf.a
 
-###############################################################################
-# MiniLibX
-###############################################################################
-
 ifeq ($(UNAME_S),Darwin)
 
-	MLX_DIR			= libs/minilibx_opengl
-	MLX				= $(MLX_DIR)/libmlx.a
+MLX_DIR		= libs/minilibx_opengl
+MLX			= $(MLX_DIR)/libmlx.a
 
-	MLX_FLAGS		= \
-					-framework OpenGL \
-					-framework AppKit
-
-	MLX_CFLAGS		= -DGL_SILENCE_DEPRECATION
+MLX_FLAGS	= -framework OpenGL -framework AppKit
+MLX_CFLAGS	= -DGL_SILENCE_DEPRECATION
 
 else ifeq ($(UNAME_S),Linux)
 
-	MLX_DIR			= libs/minilibx-linux
-	MLX				= $(MLX_DIR)/libmlx.a
+MLX_DIR		= libs/minilibx-linux
+MLX			= $(MLX_DIR)/libmlx.a
 
-	MLX_FLAGS		= \
-					-lXext \
-					-lX11 \
-					-lm \
-					-lz
-
-	MLX_CFLAGS		=
+MLX_FLAGS	= -lXext -lX11 -lm -lz
+MLX_CFLAGS	=
 
 else
 
@@ -61,44 +33,31 @@ $(error Unsupported operating system)
 
 endif
 
-###############################################################################
-# Includes
-###############################################################################
-
 INCLUDES	= \
-				-Iinc \
-				-I$(MLX_DIR) \
-				-I$(LIBFT_DIR) \
-				-I$(PRINTF_DIR)
-
-###############################################################################
-# Sources
-###############################################################################
+			-Iinc \
+			-I$(MLX_DIR) \
+			-I$(LIBFT_DIR) \
+			-I$(PRINTF_DIR)
 
 SRCS		= \
-				src/main.c \
-				src/init/init_mlx.c \
-				src/rendering/render_smoke.c \
-				src/hooks/hooks.c \
-				src/cleanup/free_mlx.c
+			src/main.c \
+			src/init/init_mlx.c \
+			src/rendering/render_smoke.c \
+			src/hooks/hooks.c \
+			src/cleanup/free_mlx.c \
+			src/error_printing.c \
+			src/init/load_map.c \
+			src/parsing.c \
+			libs/ft_get_next_line/get_next_line.c \
+			libs/ft_get_next_line/get_next_line_utils.c
 
-###############################################################################
-# Objects
-###############################################################################
-
-OBJS		= $(SRCS:.c=.o)
-DEPS		= $(OBJS:.o=.d)
-
-###############################################################################
-# Rules
-###############################################################################
+OBJ_DIR		= build
+OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+VALGRIND = valgrind --trace-children=yes --show-leak-kinds=all --leak-check=full --track-origins=yes -s --track-fds=all
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) -C $(PRINTF_DIR)
-	@$(MAKE) -C $(MLX_DIR) CFLAGS+="$(MLX_CFLAGS)"
+$(NAME): $(LIBFT) $(PRINTF) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) \
 		$(LIBFT) \
 		$(PRINTF) \
@@ -106,22 +65,35 @@ $(NAME): $(OBJS)
 		$(MLX_FLAGS) \
 		-o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
+
+$(MLX):
+	$(MAKE) -C $(MLX_DIR) CFLAGS+="$(MLX_CFLAGS)"
+
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(MLX_CFLAGS) $(INCLUDES) -c $< -o $@
+
+ARGS ?= maps/test.cub
+
+valgrind: $(NAME)
+	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
 
 clean:
-	rm -f $(OBJS) $(DEPS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
-	@$(MAKE) -C $(MLX_DIR) clean
+	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(PRINTF_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
-
--include $(DEPS)
 
 .PHONY: all clean fclean re
