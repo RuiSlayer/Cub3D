@@ -17,7 +17,7 @@ void	draw_background(t_cub *cub)
 				color = 0x87CEEB;
 			else
 				color = 0x555555;
-			put_pixel(&cub->mlx->frame, x, y, color);
+			put_pixel(&cub->mlx.frame, x, y, color);
 			x++;
 		}
 		y++;
@@ -58,7 +58,7 @@ void	render_wall_columns(t_cub *cub)
 	end = WIN_HEIGHT * 3 / 4;
 
 	draw_vertical_line(
-		&cub->mlx->frame,
+		&cub->mlx.frame,
 		x,
 		start,
 		end,
@@ -70,6 +70,6 @@ void	render_frame(t_cub *cub)
 
     draw_background(cub);
     render_wall_columns(cub);
-	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->win,
-		cub->mlx->frame.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win,
+		cub->mlx.frame.img, 0, 0);
 }

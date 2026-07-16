@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/16 22:54:37 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/16 23:20:04 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ int	check_file_name(char const *argv)
 
 static int load_img(t_cub *cub, char *path, int i)
 {
-	t_texture	tex;
+	t_img	tex;
 
-	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
+	tex.img = mlx_xpm_file_to_image(cub->mlx.mlx, path, &tex.width, &tex.height);
 	if (!tex.img)
 		return (2);
 	tex.addr = mlx_get_data_addr(tex.img, &tex.bpp, &tex.line_len, &tex.endian);
 	if (!tex.addr)
 	{
-		mlx_destroy_image(cub->mlx, tex.img);
+		mlx_destroy_image(cub->mlx.mlx, tex.img);
 		return (2);
 	}
-	cub->textures->dir[i] = tex;
+	cub->textures.wall[i] = tex;
 	return (0);
 }
 
