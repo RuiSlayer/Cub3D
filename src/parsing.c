@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
 /*   Updated: 2026/07/16 22:54:37 by slayer           ###   ########.fr       */
@@ -34,7 +34,7 @@ int	check_file_name(char const *argv)
 	}
 	if (argv[i] == '/')
 		return (ft_dprintf(2, "Error\nThe file can't be a hidden file\n"), 1);
-	fd = open(argv, __O_DIRECTORY);
+	fd = open(argv, 0x10000);
 	if (fd >= 0)
 		return (close(fd),
 			ft_dprintf(2, "Error\nThe file can't be a dir\n"), 1);

@@ -10,7 +10,7 @@ int main(int argc, char const **argv)
 	if (init_mlx(&cub))
 		return (free_cub(&cub), 1);
 	load_map(argv[1], &cub);
-	render_smoke_frame(&cub);
+	render_frame(&cub);
 	setup_hooks(&cub);
 	mlx_loop(cub.mlx->ptr);
 	free_cub(&cub);
