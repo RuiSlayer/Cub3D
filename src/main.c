@@ -12,7 +12,7 @@ int main(int argc, char const **argv)
 	load_map(argv[1], &cub);
 	render_frame(&cub);
 	setup_hooks(&cub);
-	mlx_loop(cub.mlx->ptr);
+	mlx_loop(cub.mlx.mlx);
 	free_cub(&cub);
 	return (0);
 }
