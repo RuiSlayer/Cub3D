@@ -53,6 +53,7 @@ SRCS		= \
 
 OBJ_DIR		= build
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+VALGRIND = valgrind --trace-children=yes --show-leak-kinds=all --leak-check=full --track-origins=yes -s --track-fds=all
 
 all: $(NAME)
 
@@ -76,6 +77,11 @@ $(MLX):
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(MLX_CFLAGS) $(INCLUDES) -c $< -o $@
+
+ARGS ?= maps/test.cub
+
+valgrind: $(NAME)
+	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
 
 clean:
 	rm -rf $(OBJ_DIR)
