@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 05:51:44 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 06:41:20 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,8 @@ int		close_game(t_cub *cub);
 
 void	setup_hooks(t_cub *cub);
 int		handle_keypress(int keycode, void *param);
+int		handle_keyrelease(int keycode, void *param);
+int		game_loop(void *param);
 
 /*
 ** Initialization
