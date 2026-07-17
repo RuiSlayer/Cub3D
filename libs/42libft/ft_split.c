@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:26:57 by rucosta           #+#    #+#             */
-/*   Updated: 2026/02/26 18:27:50 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/17 06:31:55 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,10 @@ static int	word_alloc(int i, char const *s, char **ptr, char c)
 
 	wlen = word_len(s, c);
 	ptr[i] = malloc_word(s, wlen);
-	if (!ptr)
+	if (!ptr[i])
 	{
 		while (i--)
 			free(ptr[i]);
-		free(ptr[i]);
 		free(ptr);
 		return (-1);
 	}

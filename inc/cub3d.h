@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 00:01:07 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/17 05:58:26 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct s_config
 	char	*texture_path[DIRECTION_COUNT];
 	int		floor_color;
 	int		ceiling_color;
+	int		config_count;
 }	t_config;
 
 //persistent application state
