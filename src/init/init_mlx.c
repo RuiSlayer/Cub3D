@@ -2,6 +2,9 @@
 
 int	init_cub(t_cub *cub)
 {
+	int	i;
+
+	i = 0;
 	cub->mlx.mlx = malloc(sizeof(t_mlx));
 	if (!cub->mlx.mlx)
 		return (1);
@@ -9,6 +12,13 @@ int	init_cub(t_cub *cub)
 	cub->mlx.win = NULL;
 	cub->mlx.frame.img = NULL;
 	cub->mlx.frame.addr = NULL;
+	cub->config.ceiling_color = -1;
+	cub->config.floor_color = -1;
+	while(i < DIRECTION_COUNT)
+	{
+		cub->config.texture_path[i] = NULL;
+		i++;
+	}
 	return (0);
 }
 
