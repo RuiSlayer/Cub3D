@@ -151,6 +151,7 @@ typedef struct s_ray
 	t_point	step; //whether DDA moves positively or negatively through the grid
 	double	perp_wall_dist;
 	int		side; //kind of grid boundary was crossed when the wall was hit
+	int		hit; //if a wall has been hit or not
 }	t_ray;
 
 //collection of four texture images
@@ -211,6 +212,7 @@ int	print_check_textures(int code);
 */
 
 void	free_cub(t_cub *cub);
+void	free_map(t_map *map);
 int		close_game(t_cub *cub);
 
 /*
@@ -231,8 +233,25 @@ int		init_mlx(t_cub *cub);
 ** Rendering
 */
 
-void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_background(t_cub *cub);
 void	render_frame(t_cub *cub);
 void	render_wall_columns(t_cub *cub);
+void	cast_ray_for_column(t_cub *cub, int x);
+
+/*
+** Raycasting
+*/
+
+void	init_ray(t_cub *cub, t_ray *ray, int x);
+void	init_dda(t_cub *cub, t_ray *ray);
+void	perform_dda(t_cub *cub, t_ray *ray);
+void	calculate_wall_projection(t_ray *ray, t_render *render);
+void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
+
+/*
+** Debug and Testing
+*/
+
+int	init_debug_scene(t_cub *cub);
 
 #endif
