@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 06:41:20 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 05:58:26 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef struct s_config
 	char	*texture_path[DIRECTION_COUNT];
 	int		floor_color;
 	int		ceiling_color;
+	int		config_count;
 }	t_config;
 
 //persistent application state
