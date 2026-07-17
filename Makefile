@@ -88,8 +88,16 @@ $(OBJ_DIR)/%.o: %.c
 
 ARGS ?= maps/test.cub
 
+
+mlx:
+	@cd $(MLX_DIR) && git clone https://github.com/42Paris/minilibx-linux.git
+
 valgrind: $(NAME)
 	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
+
+mlxclean:
+	@rm -rf $(MLX_DIR)
+	@echo "MLX deleted"
 
 clean:
 	rm -rf $(OBJ_DIR)
