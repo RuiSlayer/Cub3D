@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:40:39 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/16 23:20:04 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/17 02:29:51 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,28 +85,58 @@ static int	find_texture(char *texture, t_cub *cub, int i)
 	return(load_img(cub, path, i));
 }
 
-int	load_textures(t_cub *cub, int fd)
+static int	set_config(t_cub *cub, char *line)
 {
 	int					i;
-	char				*texture;
-	static const char	*g_dir_names[] = {"NO", "SO", "WE", "EA"};
+	char				**sub_cmp;
+
+	i = 0;
+	sub_cmp = ft_split(line, ' ');
+	while()
+	{
+
+		i++;
+	}
+	return (ft_free_split(sub_cmp), 0);
+}
+
+static int	find_config_type(char *line)
+{
+	static const char	*config_type[] = {"NO", "SO", "WE", "EA", "C", "F"};
+	int					i;
+	char				**sub_cmp;
+
+	i = 0;
+	sub_cmp = ft_split(line, ' ');
+	while(i < 6)
+	{
+		if (ft_strcmp(sub_cmp[0], config_type[i]) == 0)
+			return (ft_free_split(sub_cmp), 0);
+		i++;
+	}
+	return (1);
+}
+
+int	load_config(t_cub *cub, int fd)
+{
+	int					i;
+	char				*line;
 	int					error_code;
 
 	i = 0;
 	error_code = 0;
 	while (i < 4)
 	{
-		texture = get_next_line(fd);
-		if (!texture)
+		line = get_next_line(fd);
+		if (!line)
 			return (2);
-		if (ft_strcmp(ft_substr(texture, 0, 2) , g_dir_names[i]))
-			return (3);
-		error_code = find_texture(texture, cub, i);
-		if (error_code)
-			return (error_code);
+		if ((error_code = find_config_type(line)))
+			return (free(line), error_code);
+		if ((error_code = set_config(cub, line)))
+			return (free(line), error_code);
 		i++;
 	}
-	return (0);
+	return (free(line), 0);
 }
 
 // char	caracter_test(int i, int j, t_Level *level)
