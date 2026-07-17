@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 00:01:17 by slayer           ###   ########.fr       */
+/*   Created: 2026/07/17 01:58:32 by slayer            #+#    #+#             */
+/*   Updated: 2026/07/17 02:01:31 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3d.h"
+# include "libft.h"
 
-int	load_map(char const *argv, t_cub *cub)
+void	ft_free_split(char **var_val)
 {
-	int	fd;
+	int	i;
 
-	if (check_file_name(argv))
-		return (1);
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	if (print_check_textures(load_config(cub, fd)))
-		return (close(fd), 1);
-	
-	return (close(fd), 0);
+	i = 0;
+	while (var_val[i])
+		free(var_val[i++]);
+	free(var_val);
 }

@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 13:22:24 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/15 23:07:07 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/17 00:06:20 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_check_textures(int code)
 	if (code == 2)
 		return (ft_dprintf(2, "Error\n NULL pointer exeception!\n"), 1);
 	if (code == 3)
-		return (ft_dprintf(2, "Error\n wrong direction passed!\n"), 1);
+		return (ft_dprintf(2, "Error\n invalid config in file!\n"), 1);
 	if (code == 4)
 		ft_dprintf(2, "Error\n texture file must be .xpm type file!\n", 1);
 	if (code == 5)

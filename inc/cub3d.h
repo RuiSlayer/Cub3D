@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/16 23:05:19 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 00:01:07 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ typedef struct s_cub
 */
 int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	load_textures(t_cub *cub, int fd);
+int	load_config(t_cub *cub, int fd);
 int	print_check_textures(int code);
 
 /*
