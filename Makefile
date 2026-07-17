@@ -42,12 +42,16 @@ INCLUDES	= \
 SRCS		= \
 			src/main.c \
 			src/init/init_mlx.c \
-			src/rendering/render_smoke.c \
+			src/init/init_debug_scene.c \
+			src/rendering/render_frame.c \
+			src/rendering/background.c \
+			src/rendering/draw_column.c \
+			src/rendering/raycast.c \
+			src/rendering/dda.c \
 			src/hooks/hooks.c \
 			src/cleanup/free_mlx.c \
+			src/cleanup/free_map.c \
 			src/error_printing.c \
-			src/init/load_map.c \
-			src/parsing.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 

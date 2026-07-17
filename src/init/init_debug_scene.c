@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 23:26:02 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 00:11:13 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 04:47:39 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	init_debug_scene(t_cub *cub)
 
 	cub->map.width = 7;
 	cub->map.height = 7;
-	cub->map.spawn = 'N';
+	cub->map.spawn = 'S';
 	cub->map.grid = ft_calloc(cub->map.height + 1, sizeof(char *));
 	if (!cub->map.grid)
 		return (FAILURE);
@@ -44,7 +44,7 @@ int	init_debug_scene(t_cub *cub)
 		y++;
 	}
 	cub->player.pos.x = 3.5;
-	cub->player.pos.y = 4.5;
+	cub->player.pos.y = 6.5;
 	cub->player.dir.x = 0.0;
 	cub->player.dir.y = -1.0;
 	cub->player.plane.x = 0.66;
