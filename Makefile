@@ -52,6 +52,7 @@ SRCS		= \
 			src/movement/player_move.c \
 			src/movement/player_rotate.c \
 			src/movement/player_update.c \
+			src/movement/collision.c \
 			src/cleanup/free_mlx.c \
 			src/cleanup/free_map.c \
 			src/error_printing.c \

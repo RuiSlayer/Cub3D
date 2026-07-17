@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 07:59:12 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 09:38:22 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,7 @@ void	move_backward(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 void	rotate_player(t_cub *cub, double angle);
+int 	can_move_to(t_map *map, double x, double y);
 
 /*
 ** Debug and Testing
