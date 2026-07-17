@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
 /*   Updated: 2026/07/17 05:58:26 by slayer           ###   ########.fr       */
@@ -45,6 +45,7 @@
 */
 
 # define EVENT_KEY_PRESS 2
+# define EVENT_KEY_RELEASE 3
 # define EVENT_DESTROY 17
 
 /*
@@ -80,6 +81,8 @@
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
+# define SIDE_X 0
+# define SIDE_Y 1
 
 typedef enum e_direction
 {
@@ -207,6 +210,7 @@ int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
 int	load_config(t_cub *cub, int fd);
 int	print_check_textures(int code);
+int	is_wall_or_void(t_map *map, int x, int y);
 
 /*
 ** Cleanup and exit
@@ -222,6 +226,8 @@ int		close_game(t_cub *cub);
 
 void	setup_hooks(t_cub *cub);
 int		handle_keypress(int keycode, void *param);
+int		handle_keyrelease(int keycode, void *param);
+int		game_loop(void *param);
 
 /*
 ** Initialization
@@ -238,6 +244,7 @@ void	draw_background(t_cub *cub);
 void	render_frame(t_cub *cub);
 void	render_wall_columns(t_cub *cub);
 void	cast_ray_for_column(t_cub *cub, int x);
+void	put_pixel(t_img *img, int x, int y, int color);
 
 /*
 ** Raycasting
