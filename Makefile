@@ -49,6 +49,9 @@ SRCS		= \
 			src/rendering/raycast.c \
 			src/rendering/dda.c \
 			src/hooks/hooks.c \
+			src/movement/player_move.c \
+			src/movement/player_rotate.c \
+			src/movement/player_update.c \
 			src/cleanup/free_mlx.c \
 			src/cleanup/free_map.c \
 			src/error_printing.c \

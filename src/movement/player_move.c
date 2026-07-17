@@ -6,11 +6,9 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 05:10:34 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 06:38:45 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 08:23:37 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../inc/cub3d.h"
 
 #include "../../inc/cub3d.h"
 

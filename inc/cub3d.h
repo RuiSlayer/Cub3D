@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 05:58:26 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/17 07:59:12 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,17 @@ void	init_dda(t_cub *cub, t_ray *ray);
 void	perform_dda(t_cub *cub, t_ray *ray);
 void	calculate_wall_projection(t_ray *ray, t_render *render);
 void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
+
+/*
+** Player movement
+*/
+
+void	update_player(t_cub *cub);
+void	move_forward(t_cub *cub);
+void	move_backward(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+void	rotate_player(t_cub *cub, double angle);
 
 /*
 ** Debug and Testing

@@ -8,13 +8,9 @@ int	init_cub(t_cub *cub)
 	cub->mlx.mlx = malloc(sizeof(t_mlx));
 	if (!cub->mlx.mlx)
 		return (1);
-	cub->mlx.mlx = NULL;
-	cub->mlx.win = NULL;
-	cub->mlx.frame.img = NULL;
-	cub->mlx.frame.addr = NULL;
+	ft_bzero(cub, sizeof(t_cub));
 	cub->config.ceiling_color = -1;
 	cub->config.floor_color = -1;
-	cub->config.config_count = 0;
 	while(i < DIRECTION_COUNT)
 	{
 		cub->config.texture_path[i] = NULL;
