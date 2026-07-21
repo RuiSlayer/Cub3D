@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 05:58:26 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/21 18:35:14 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,11 +206,24 @@ typedef struct s_cub
 /*
 ** parcing and map loading
 */
-int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	load_config(t_cub *cub, int fd);
+int	load_map(char const *argv, t_cub *cub);
+int	set_config(t_cub *cub, char **split_line);
+int	has_xpm_ext(char *path);
+t_direction	get_direction(char *token);
 int	print_check_textures(int code);
 int	is_wall_or_void(t_map *map, int x, int y);
+
+/*
+** Movement
+*/
+
+int	game_loop(void *param);
+void	move_forward(t_cub *cub);
+void	move_backward(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+void	rotate_player(t_cub *cub, double angle);
 
 /*
 ** Cleanup and exit

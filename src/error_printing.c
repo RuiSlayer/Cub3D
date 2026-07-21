@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 13:22:24 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 05:12:15 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/21 17:37:48 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	print_check_textures(int code)
 	if (code == 8)
 		ft_dprintf(2, "Error\n duplicate seting for ceiling/floor color!");
 	if (code == 9)
-		ft_dprintf(2, "Error\n duplicate direction texture!");
+		ft_dprintf(2, "Error\n duplicate direction!");
 	return (0);
 }

@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 05:10:34 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 06:38:45 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/21 16:55:23 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../inc/cub3d.h"
 
 #include "../../inc/cub3d.h"
 

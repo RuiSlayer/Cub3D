@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 00:32:53 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 04:45:14 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/21 16:52:26 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	init_ray(t_cub *cub, t_ray *ray, int x)
     if (ray->dir.y == 0)
         ray->delta_dist.y = 1e30;
     else
+    {
         ray->delta_dist.y = ft_abs_double(1.0 / ray->dir.y);
         ray->hit = 0;
         ray->side = SIDE_X;
+    }
 }
 
 void	calculate_wall_projection(t_ray *ray, t_render *render)
