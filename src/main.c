@@ -25,8 +25,8 @@ int	main(int argc, char const **argv)
 		return (free_cub(&cub), 1);
 	if (init_mlx(&cub))
 		return (free_cub(&cub), 1);
-	render_frame(&cub);
 	setup_hooks(&cub);
+	render_frame(&cub);
 	mlx_loop(cub.mlx.mlx);
 	free_cub(&cub);
 	return (0);

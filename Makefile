@@ -49,6 +49,10 @@ SRCS		= \
 			src/rendering/raycast.c \
 			src/rendering/dda.c \
 			src/hooks/hooks.c \
+			src/movement/player_move.c \
+			src/movement/player_rotate.c \
+			src/movement/player_update.c \
+			src/movement/collision.c \
 			src/cleanup/free_mlx.c \
 			src/cleanup/free_map.c \
 			src/error_printing.c \
@@ -90,8 +94,16 @@ $(OBJ_DIR)/%.o: %.c
 
 ARGS ?= maps/test.cub
 
+
+mlx:
+	@cd $(MLX_DIR) && git clone https://github.com/42Paris/minilibx-linux.git
+
 valgrind: $(NAME)
 	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
+
+mlxclean:
+	@rm -rf $(MLX_DIR)
+	@echo "MLX deleted"
 
 clean:
 	rm -rf $(OBJ_DIR)

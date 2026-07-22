@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 23:26:02 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 04:47:39 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 08:23:54 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ int	init_debug_scene(t_cub *cub)
 		y++;
 	}
 	cub->player.pos.x = 3.5;
-	cub->player.pos.y = 6.5;
+	cub->player.pos.y = 4.5;
 	cub->player.dir.x = 0.0;
 	cub->player.dir.y = -1.0;
 	cub->player.plane.x = 0.66;
 	cub->player.plane.y = 0.0;
+	cub->player.move_speed = 0.05;
+	cub->player.rot_speed = 0.03;
 	cub->config.ceiling_color = 0x87CEEB;
 	cub->config.floor_color = 0x444444;
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 00:33:45 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 04:49:16 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/17 08:18:06 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	perform_dda(t_cub *cub, t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = SIDE_Y;
 		}
-		if (is_wall_or_void(&cub->map, ray->map.y, ray->map.x))
+		if (is_wall_or_void(&cub->map, ray->map.x, ray->map.y))
 			ray->hit = 1;
 	}
 }

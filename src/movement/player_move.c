@@ -19,11 +19,9 @@ static void	try_move(t_cub *cub, double move_x, double move_y)
 
 	new_x = cub->player.pos.x + move_x;
 	new_y = cub->player.pos.y + move_y;
-	if (!is_wall_or_void(&cub->map, (int)new_x,
-			(int)cub->player.pos.y))
+	if (can_move_to(&cub->map, new_x, cub->player.pos.y))
 		cub->player.pos.x = new_x;
-	if (!is_wall_or_void(&cub->map, (int)cub->player.pos.x,
-			(int)new_y))
+	if (can_move_to(&cub->map, cub->player.pos.x, new_y))
 		cub->player.pos.y = new_y;
 }
 

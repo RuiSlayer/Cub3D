@@ -277,6 +277,18 @@ void	calculate_wall_projection(t_ray *ray, t_render *render);
 void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
 
 /*
+** Player movement
+*/
+
+void	update_player(t_cub *cub);
+void	move_forward(t_cub *cub);
+void	move_backward(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+void	rotate_player(t_cub *cub, double angle);
+int 	can_move_to(t_map *map, double x, double y);
+
+/*
 ** Debug and Testing
 */
 
