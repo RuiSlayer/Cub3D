@@ -6,11 +6,11 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 01:58:32 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 02:01:31 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/21 19:04:13 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 void	ft_free_split(char **var_val)
 {

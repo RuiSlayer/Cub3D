@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/21 18:35:14 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 02:48:02 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
-	char	spawn;
+	char	spawn_dir;
+	t_point	spawn_pos;
 }	t_map;
 
 //temporary raycasting calculations
@@ -211,9 +212,11 @@ int	load_map(char const *argv, t_cub *cub);
 int	set_config(t_cub *cub, char **split_line);
 int	has_xpm_ext(char *path);
 t_direction	get_direction(char *token);
-int	print_check_textures(int code);
+int	print_config_error(int code);
+int	print_map_error(int code);
+int	map_parser(t_cub *cub, int fd);
 int	is_wall_or_void(t_map *map, int x, int y);
-
+int	is_valid_map(t_cub *cub);
 /*
 ** Movement
 */
@@ -245,7 +248,7 @@ int		game_loop(void *param);
 /*
 ** Initialization
 */
-
+void	init_map_vars(t_cub *cub);
 int		init_cub(t_cub *cub);
 int		init_mlx(t_cub *cub);
 
