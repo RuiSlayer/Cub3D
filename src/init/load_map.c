@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/21 18:28:43 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 02:38:52 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,14 @@ int	load_map(char const *argv, t_cub *cub)
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	if (print_check_textures(load_config(cub, fd)))
+	if (print_config_error(load_config(cub, fd)))
 		return (close(fd), 1);
 	ft_dprintf(2, "textures and colors saved with sucess!\n");
-	return (close(fd), 0);
+	if (print_map_error(map_parser(cub, fd)))
+		return (close(fd), 1);
+	close(fd);
+	if (print_map_error(is_valid_map(cub)))
+		return (1);
+	ft_dprintf(2, "map loaded with sucess!\n");
+	return (0);
 }

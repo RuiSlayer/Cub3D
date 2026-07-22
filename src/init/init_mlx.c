@@ -1,5 +1,12 @@
 #include "../../inc/cub3d.h"
 
+void	init_map_vars(t_cub *cub)
+{
+	cub->map.spawn = 'X';
+	cub->map.height = 0;
+	cub->map.width = 0;
+}
+
 int	init_cub(t_cub *cub)
 {
 	int	i;
