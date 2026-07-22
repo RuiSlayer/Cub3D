@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:32:34 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 22:40:51 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	map_parser(t_cub *cub, int fd)
 	i = 0;
 	while (lines[i])
 	{
-		if (ft_strlen(lines[i]) > cub->map.width)
+		if ((int)ft_strlen(lines[i]) > cub->map.width)
 			cub->map.width = ft_strlen(lines[i]);
 		i++;
 	}

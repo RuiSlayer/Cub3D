@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_debug_scene.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 23:26:02 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 08:23:54 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:45:23 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	init_debug_scene(t_cub *cub)
 
 	cub->map.width = 7;
 	cub->map.height = 7;
-	cub->map.spawn = 'S';
+	cub->map.spawn_dir = 'S';
 	cub->map.grid = ft_calloc(cub->map.height + 1, sizeof(char *));
 	if (!cub->map.grid)
 		return (FAILURE);
@@ -49,8 +49,8 @@ int	init_debug_scene(t_cub *cub)
 	cub->player.dir.y = -1.0;
 	cub->player.plane.x = 0.66;
 	cub->player.plane.y = 0.0;
-	cub->player.move_speed = 0.05;
-	cub->player.rot_speed = 0.03;
+	cub->player.move_speed = 0.03;
+	cub->player.rot_speed = 0.01;
 	cub->config.ceiling_color = 0x87CEEB;
 	cub->config.floor_color = 0x444444;
 	return (SUCCESS);

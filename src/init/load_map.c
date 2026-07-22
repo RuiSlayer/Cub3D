@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:27:31 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 22:43:13 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int	load_map(char const *argv, t_cub *cub)
 	if (print_map_error(map_parser(cub, fd)))
 		return (close(fd), 1);
 	close(fd);
-	if (print_map_error(is_valid_map(cub)))
-		return (1);
 	flood_fill_check(cub);
 	ft_dprintf(2, "map loaded with sucess!\n");
 	return (0);
