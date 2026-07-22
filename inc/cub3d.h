@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 02:48:02 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 18:32:51 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,10 @@ int	print_map_error(int code);
 int	map_parser(t_cub *cub, int fd);
 int	is_wall_or_void(t_map *map, int x, int y);
 int	is_valid_map(t_cub *cub);
+void	free_map_lines(char **lines, int count);
+int	flood_fill_check(t_cub *cub);
+void	trim_trailing_blank_lines(char **lines, t_cub *cub);
+char	*skip_new_lines(int fd);
 /*
 ** Movement
 */

@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 03:33:47 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 18:32:34 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,49 +48,6 @@ int	check_for_invalid_chars(char *line, int y, t_cub *cub)
 		i++;
 	}
 	return (0);
-}
-
-char	*skip_new_lines(int fd)
-{
-	char	*line;
-
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			return (NULL);
-		if (ft_strcmp(line, "\n") != 0)
-			return (line);
-	}
-}
-
-void	free_map_lines(char **lines, int count)
-{
-	int	i;
-
-	if (!lines)
-		return ;
-	i = 0;
-	while (i < count)
-	{
-		free(lines[i]);
-		i++;
-	}
-	free(lines);
-}
-
-static void	trim_trailing_blank_lines(char **lines, t_cub *cub)
-{
-	int	last;
-
-	last = cub->map.height - 1;
-	while (last >= 0 && lines[last][0] == '\0')
-	{
-		free(lines[last]);
-		lines[last] = NULL;
-		last--;
-	}
-	cub->map.height = last + 1;
 }
 
 static char	**grow_lines_if_needed(char **lines, int count, int *capacity)
