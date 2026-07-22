@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/17 09:38:22 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/22 18:32:51 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
-	char	spawn;
+	char	spawn_dir;
+	t_point	spawn_pos;
 }	t_map;
 
 //temporary raycasting calculations
@@ -206,11 +207,30 @@ typedef struct s_cub
 /*
 ** parcing and map loading
 */
-int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	load_config(t_cub *cub, int fd);
-int	print_check_textures(int code);
+int	load_map(char const *argv, t_cub *cub);
+int	set_config(t_cub *cub, char **split_line);
+int	has_xpm_ext(char *path);
+t_direction	get_direction(char *token);
+int	print_config_error(int code);
+int	print_map_error(int code);
+int	map_parser(t_cub *cub, int fd);
 int	is_wall_or_void(t_map *map, int x, int y);
+int	is_valid_map(t_cub *cub);
+void	free_map_lines(char **lines, int count);
+int	flood_fill_check(t_cub *cub);
+void	trim_trailing_blank_lines(char **lines, t_cub *cub);
+char	*skip_new_lines(int fd);
+/*
+** Movement
+*/
+
+int	game_loop(void *param);
+void	move_forward(t_cub *cub);
+void	move_backward(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+void	rotate_player(t_cub *cub, double angle);
 
 /*
 ** Cleanup and exit
@@ -232,7 +252,7 @@ int		game_loop(void *param);
 /*
 ** Initialization
 */
-
+void	init_map_vars(t_cub *cub);
 int		init_cub(t_cub *cub);
 int		init_mlx(t_cub *cub);
 

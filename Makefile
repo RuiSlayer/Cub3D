@@ -56,6 +56,12 @@ SRCS		= \
 			src/cleanup/free_mlx.c \
 			src/cleanup/free_map.c \
 			src/error_printing.c \
+			src/movement/player_move.c \
+			src/movement/player_rotate.c \
+			src/movement/player_update.c \
+			src/init/load_map.c \
+			src/init/config_loader.c \
+			src/init/config_loader_utils.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 

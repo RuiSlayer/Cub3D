@@ -1,7 +1,7 @@
-NO textures/doom.xpm
-SO textures/doom.xpm
-WE textures/doom.xpm
-EA textures/doom.xpm
+NO ./textures/doom.xpm
+SO ./textures/doom.xpm
+WE ./textures/doom.xpm
+EA ./textures/doom.xpm
 
 F 220,100,0
 C 225,30,0

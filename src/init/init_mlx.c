@@ -1,4 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/22 18:33:51 by slayer            #+#    #+#             */
+/*   Updated: 2026/07/22 18:34:43 by slayer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
+
+void	init_map_vars(t_cub *cub)
+{
+	cub->map.spawn_dir = 'X';
+	cub->map.height = 0;
+	cub->map.width = 0;
+}
 
 int	init_cub(t_cub *cub)
 {
@@ -11,7 +30,8 @@ int	init_cub(t_cub *cub)
 	ft_bzero(cub, sizeof(t_cub));
 	cub->config.ceiling_color = -1;
 	cub->config.floor_color = -1;
-	while(i < DIRECTION_COUNT)
+	cub->config.config_count = 0;
+	while (i < DIRECTION_COUNT)
 	{
 		cub->config.texture_path[i] = NULL;
 		i++;
@@ -65,10 +85,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 		return ;
 	if (y < 0 || y >= WIN_HEIGHT)
 		return ;
-
 	dst = img->addr
 		+ (y * img->line_len)
 		+ (x * (img->bpp / 8));
-
 	*(unsigned int *)dst = color;
 }

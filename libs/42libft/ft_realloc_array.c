@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_len.c                                     :+:      :+:    :+:   */
+/*   ft_realloc_array.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/17 04:34:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/21 19:05:13 by slayer           ###   ########.fr       */
+/*   Created: 2026/07/22 02:18:07 by slayer            #+#    #+#             */
+/*   Updated: 2026/07/22 02:18:10 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_split_len(char **split)
+char	**ft_realloc_array(char **old, int old_capacity, int new_capacity)
 {
-	int	i;
+	char	**new_arr;
+	int		i;
 
-	if (!split)
-		return (0);
+	new_arr = malloc(sizeof(char *) * new_capacity);
+	if (!new_arr)
+		return (NULL);
 	i = 0;
-	while (split[i])
+	while (i < old_capacity)
+	{
+		new_arr[i] = old[i];
 		i++;
-	return (i);
+	}
+	free(old);
+	return (new_arr);
 }
