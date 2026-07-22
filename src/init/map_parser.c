@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 22:40:51 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 23:15:57 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,13 @@ int	map_parser(t_cub *cub, int fd)
 	}
 	cub->map.grid = lines;
 	return (0);
+}
+
+void	print_map(t_cub *cub)
+{
+	int i;
+	for (i = 0; i < cub->map.height; i++)
+	{
+		printf("line %i: %s\n",i+1, cub->map.grid[i]);
+	}
 }

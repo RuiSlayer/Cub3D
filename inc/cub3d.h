@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 22:37:37 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 23:34:47 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,11 +221,7 @@ void	free_map_lines(char **lines, int count);
 int	flood_fill_check(t_cub *cub);
 void	trim_trailing_blank_lines(char **lines, t_cub *cub);
 char	*skip_new_lines(int fd);
-/*
-** Movement
-*/
-
-
+void	player_init(t_cub *cub);
 
 /*
 ** Cleanup and exit
@@ -281,12 +277,12 @@ void	move_backward(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 void	rotate_player(t_cub *cub, double angle);
-int	can_move_to(t_map *map, double x, double y);
+int		can_move_to(t_map *map, double x, double y);
 
 /*
 ** Debug and Testing
 */
-
+void	print_map(t_cub *cub);
 int	init_debug_scene(t_cub *cub);
 
 #endif

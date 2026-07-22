@@ -62,6 +62,7 @@ SRCS		= \
 			src/init/map_parser.c \
 			src/init/map_parser_utils.c \
 			src/init/validate_map.c \
+			src/init/player_init.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 
