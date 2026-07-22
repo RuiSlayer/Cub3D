@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 00:12:41 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 00:18:16 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:30:57 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	free_map(t_map *map)
 	map->grid = NULL;
 	map->width = 0;
 	map->height = 0;
-	map->spawn = '\0';
+	map->spawn_dir = '\0';
 }

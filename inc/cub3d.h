@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:32:51 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/22 22:37:37 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,12 +225,7 @@ char	*skip_new_lines(int fd);
 ** Movement
 */
 
-int	game_loop(void *param);
-void	move_forward(t_cub *cub);
-void	move_backward(t_cub *cub);
-void	move_left(t_cub *cub);
-void	move_right(t_cub *cub);
-void	rotate_player(t_cub *cub, double angle);
+
 
 /*
 ** Cleanup and exit
@@ -286,7 +281,7 @@ void	move_backward(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 void	rotate_player(t_cub *cub, double angle);
-int 	can_move_to(t_map *map, double x, double y);
+int	can_move_to(t_map *map, double x, double y);
 
 /*
 ** Debug and Testing
