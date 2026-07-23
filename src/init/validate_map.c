@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:24:33 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:28:52 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/23 20:16:29 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	flood_fill_check(t_cub *cub)
 
 	grid = dup_grid(cub->map.grid, cub->map.height);
 	if (!grid)
-		return (1);
+		return (5);
 	stack = malloc(sizeof(t_point) * (cub->map.width * cub->map.height * 4));
 	if (!stack)
-		return (free_map_lines(grid, cub->map.height), 2);
+		return (free_map_lines(grid, cub->map.height), 6);
 	top = 0;
 	stack[top].x = cub->map.spawn_pos.x;
 	stack[top].y = cub->map.spawn_pos.y;
@@ -65,7 +65,7 @@ int	flood_fill_check(t_cub *cub)
 		top--;
 		p = stack[top];
 		if (!is_valid_tile(cub, grid, p.x, p.y))
-			return (free(stack), free_map_lines(grid, cub->map.height), 3);
+			return (free(stack), free_map_lines(grid, cub->map.height), 7);
 		if (grid[p.y][p.x] == '1' || grid[p.y][p.x] == 'V')
 			continue ;
 		grid[p.y][p.x] = 'V';

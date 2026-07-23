@@ -54,7 +54,7 @@ SRCS		= \
 			src/movement/player_update.c \
 			src/movement/collision.c \
 			src/cleanup/free_mlx.c \
-			src/cleanup/free_map.c \
+			src/cleanup/clean_exit.c \
 			src/error_printing.c \
 			src/init/load_map.c \
 			src/init/config_loader.c \

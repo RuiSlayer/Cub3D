@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:30:38 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:32:40 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/23 20:03:34 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*skip_new_lines(int fd)
 			return (NULL);
 		if (ft_strcmp(line, "\n") != 0)
 			return (line);
+		free(line);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:06:02 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 23:35:09 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/23 19:37:00 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, char const **argv)
 	if (argc != 2)
 		return (ft_dprintf(2, "Error\nA map should be pass as argument\n"));
 	init_cub(&cub);
-	load_map(argv[1], &cub);
+	if (load_map(argv[1], &cub))
+		return (free_cub(&cub), 1);
 	print_map(&cub);
 	player_init(&cub);
 	if (init_mlx(&cub))

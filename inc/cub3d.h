@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 23:34:47 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/23 19:35:39 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,9 @@ void	player_init(t_cub *cub);
 ** Cleanup and exit
 */
 
+void	free_config(t_config *config);
+void	free_textures(t_mlx *mlx, t_textures *textures);
+void	free_mlx(t_mlx *mlx);
 void	free_cub(t_cub *cub);
 void	free_map(t_map *map);
 int		close_game(t_cub *cub);

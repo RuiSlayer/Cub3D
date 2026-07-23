@@ -6,11 +6,12 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 22:43:13 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/23 20:19:03 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include <stdio.h>
 
 static int	is_config(char *type)
 {
@@ -80,7 +81,8 @@ int	load_map(char const *argv, t_cub *cub)
 	if (print_map_error(map_parser(cub, fd)))
 		return (close(fd), 1);
 	close(fd);
-	flood_fill_check(cub);
+	if (print_map_error(flood_fill_check(cub)))
+		return (1);
 	ft_dprintf(2, "map loaded with sucess!\n");
 	return (0);
 }

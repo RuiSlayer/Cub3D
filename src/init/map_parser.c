@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 23:15:57 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:01:32 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ int	is_valid_char(char c, t_cub *cub)
 int	check_for_invalid_chars(char *line, int y, t_cub *cub)
 {
 	int	i;
-	int	val_return;
+	int	error_code;
 
-	val_return = 0;
+	error_code = 0;
 	i = 0;
 	while (line[i])
 	{
-		val_return = is_valid_char(line[i], cub);
-		if (val_return == 0)
-			return (1);
-		else if (val_return == 2)
+		error_code = is_valid_char(line[i], cub);
+		if (error_code == 0)
+			return (3);
+		else if (error_code == 2)
 		{
 			cub->map.spawn_pos.x = i;
 			cub->map.spawn_pos.y = y;
 		}
-		else if (val_return == 3)
-			return (3);
+		else if (error_code == 3)
+			return (4);
 		i++;
 	}
 	return (0);
@@ -60,7 +60,7 @@ static char	**grow_lines_if_needed(char **lines, int count, int *capacity)
 	return (lines);
 }
 
-char	**collect_map_lines(int fd, char *line, t_cub *cub)
+char	**collect_map_lines(int fd, char *line, t_cub *cub, int *error_code)
 {
 	char	**lines;
 	int		capacity;
@@ -69,19 +69,21 @@ char	**collect_map_lines(int fd, char *line, t_cub *cub)
 	capacity = 16;
 	lines = malloc(sizeof(char *) * capacity);
 	if (!lines)
-		return (NULL);
+		return (*error_code = 2, NULL);
 	count = 0;
 	while (line)
 	{
 		lines = grow_lines_if_needed(lines, count, &capacity);
 		if (!lines)
-			return (NULL);
+			return (*error_code = 2, NULL);
 		ft_trim_newline(line);
-		if (check_for_invalid_chars(line, count, cub))
+		*error_code = check_for_invalid_chars(line, count, cub);
+		if (*error_code)
 			return (free(line), free_map_lines(lines, count), NULL);
 		lines[count++] = line;
 		line = get_next_line(fd);
 	}
+	*error_code = 0;
 	cub->map.height = count;
 	return (lines);
 }
@@ -91,17 +93,18 @@ int	map_parser(t_cub *cub, int fd)
 	char	*line;
 	char	**lines;
 	int		i;
+	int		error_code;
 
 	line = skip_new_lines(fd);
 	if (!line)
 		return (1);
 	init_map_vars(cub);
-	lines = collect_map_lines(fd, line, cub);
+	lines = collect_map_lines(fd, line, cub, &error_code);
 	if (!lines)
-		return (2);
+		return (error_code);
 	lines[cub->map.height] = NULL;
 	if (cub->map.spawn_dir == 'X')
-		return (ft_free_split(lines), 3);
+		return (ft_free_split(lines), 4);
 	trim_trailing_blank_lines(lines, cub);
 	i = 0;
 	while (lines[i])
