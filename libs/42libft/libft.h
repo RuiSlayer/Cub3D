@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rucosta <rucosta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:21:47 by rucosta           #+#    #+#             */
-/*   Updated: 2026/04/15 04:34:33 by rucosta          ###   ########.fr       */
+/*   Updated: 2026/07/22 02:18:27 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,9 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isspace(int c);
 long	ft_atol(const char *s);
+char	*ft_left_trim(unsigned int size, char *str);
+void	ft_trim_newline(char *str);
+void	ft_free_split(char **var_val);
+int		ft_split_len(char **split);
+char	**ft_realloc_array(char **old, int old_capacity, int new_capacity);
 #endif

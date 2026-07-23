@@ -1,0 +1,36 @@
+# Binary
+cub3D
+docker/Dockerfile
+# Object files
+*.o
+*.a
+
+# Build directory
+build/
+
+# But keep the mlx/libft/printf/gnl static libs tracked if you vendor them as source
+# (comment out these two lines if you want the .a files committed)
+libs/**/*.a
+libs/**/*.o
+
+# minilibx build artifacts
+libs/minilibx-linux/obj/
+libs/minilibx-linux/libmlx.a
+libs/minilibx-linux/libmlx_Linux.a
+libs/minilibx-linux/test/*.o
+libs/minilibx-linux/test/mlx-test
+
+# Editor / OS junk
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Valgrind / core dumps
+core
+vgcore.*
+*.log
+
+# Norminette cache (if you use the vscode extension)
+.norm_cache
