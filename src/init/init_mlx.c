@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:33:51 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 18:34:43 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/23 20:09:05 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,11 @@ int	init_cub(t_cub *cub)
 {
 	int	i;
 
-	i = 0;
-	cub->mlx.mlx = malloc(sizeof(t_mlx));
-	if (!cub->mlx.mlx)
-		return (1);
 	ft_bzero(cub, sizeof(t_cub));
 	cub->config.ceiling_color = -1;
 	cub->config.floor_color = -1;
 	cub->config.config_count = 0;
+	i = 0;
 	while (i < DIRECTION_COUNT)
 	{
 		cub->config.texture_path[i] = NULL;
@@ -41,39 +38,21 @@ int	init_cub(t_cub *cub)
 
 int	init_mlx(t_cub *cub)
 {
-	cub->mlx.mlx = malloc(sizeof(t_mlx));
-	if (!cub->mlx.mlx)
-	{
-		printf("Malloc failed for mlx\n");
-		return (1);
-	}
 	cub->mlx.mlx = mlx_init();
 	if (!cub->mlx.mlx)
-	{
-		printf("Couldn't initiate MLX :(\n");
-		return (1);
-	}
+		return (printf("Couldn't initiate MLX :(\n"), 1);
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "First test");
 	if (!cub->mlx.win)
-	{
-		printf("Couldn't open MLX window\n");
-		return (1);
-	}
+		return (printf("Couldn't open MLX window\n"), 1);
 	cub->mlx.frame.img = mlx_new_image(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!cub->mlx.frame.img)
-	{
-		printf("Couldn't build frame\n");
-		return (1);
-	}
+		return (printf("Couldn't build frame\n"), 1);
 	cub->mlx.frame.addr = mlx_get_data_addr(cub->mlx.frame.img,
 			&cub->mlx.frame.bpp,
 			&cub->mlx.frame.line_len,
 			&cub->mlx.frame.endian);
 	if (!cub->mlx.frame.addr)
-	{
-		printf("Couldn't find address\n");
-		return (1);
-	}
+		return (printf("Couldn't find address\n"), 1);
 	return (0);
 }
 
