@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/16 23:05:19 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/23 19:35:39 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 */
 
 # define EVENT_KEY_PRESS 2
+# define EVENT_KEY_RELEASE 3
 # define EVENT_DESTROY 17
 
 /*
@@ -80,6 +81,8 @@
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
+# define SIDE_X 0
+# define SIDE_Y 1
 
 typedef enum e_direction
 {
@@ -137,7 +140,8 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
-	char	spawn;
+	char	spawn_dir;
+	t_point	spawn_pos;
 }	t_map;
 
 //temporary raycasting calculations
@@ -151,6 +155,7 @@ typedef struct s_ray
 	t_point	step; //whether DDA moves positively or negatively through the grid
 	double	perp_wall_dist;
 	int		side; //kind of grid boundary was crossed when the wall was hit
+	int		hit; //if a wall has been hit or not
 }	t_ray;
 
 //collection of four texture images
@@ -185,6 +190,7 @@ typedef struct s_config
 	char	*texture_path[DIRECTION_COUNT];
 	int		floor_color;
 	int		ceiling_color;
+	int		config_count;
 }	t_config;
 
 //persistent application state
@@ -201,16 +207,31 @@ typedef struct s_cub
 /*
 ** parcing and map loading
 */
-int	load_map(char const *argv, t_cub *cub);
 int	check_file_name(char const *argv);
-int	load_textures(t_cub *cub, int fd);
-int	print_check_textures(int code);
+int	load_map(char const *argv, t_cub *cub);
+int	set_config(t_cub *cub, char **split_line);
+int	has_xpm_ext(char *path);
+t_direction	get_direction(char *token);
+int	print_config_error(int code);
+int	print_map_error(int code);
+int	map_parser(t_cub *cub, int fd);
+int	is_wall_or_void(t_map *map, int x, int y);
+int	is_valid_map(t_cub *cub);
+void	free_map_lines(char **lines, int count);
+int	flood_fill_check(t_cub *cub);
+void	trim_trailing_blank_lines(char **lines, t_cub *cub);
+char	*skip_new_lines(int fd);
+void	player_init(t_cub *cub);
 
 /*
 ** Cleanup and exit
 */
 
+void	free_config(t_config *config);
+void	free_textures(t_mlx *mlx, t_textures *textures);
+void	free_mlx(t_mlx *mlx);
 void	free_cub(t_cub *cub);
+void	free_map(t_map *map);
 int		close_game(t_cub *cub);
 
 /*
@@ -219,11 +240,13 @@ int		close_game(t_cub *cub);
 
 void	setup_hooks(t_cub *cub);
 int		handle_keypress(int keycode, void *param);
+int		handle_keyrelease(int keycode, void *param);
+int		game_loop(void *param);
 
 /*
 ** Initialization
 */
-
+void	init_map_vars(t_cub *cub);
 int		init_cub(t_cub *cub);
 int		init_mlx(t_cub *cub);
 
@@ -231,8 +254,38 @@ int		init_mlx(t_cub *cub);
 ** Rendering
 */
 
-void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_background(t_cub *cub);
 void	render_frame(t_cub *cub);
 void	render_wall_columns(t_cub *cub);
+void	cast_ray_for_column(t_cub *cub, int x);
+void	put_pixel(t_img *img, int x, int y, int color);
+
+/*
+** Raycasting
+*/
+
+void	init_ray(t_cub *cub, t_ray *ray, int x);
+void	init_dda(t_cub *cub, t_ray *ray);
+void	perform_dda(t_cub *cub, t_ray *ray);
+void	calculate_wall_projection(t_ray *ray, t_render *render);
+void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
+
+/*
+** Player movement
+*/
+
+void	update_player(t_cub *cub);
+void	move_forward(t_cub *cub);
+void	move_backward(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+void	rotate_player(t_cub *cub, double angle);
+int		can_move_to(t_map *map, double x, double y);
+
+/*
+** Debug and Testing
+*/
+void	print_map(t_cub *cub);
+int	init_debug_scene(t_cub *cub);
 
 #endif

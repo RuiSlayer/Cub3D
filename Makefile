@@ -42,12 +42,27 @@ INCLUDES	= \
 SRCS		= \
 			src/main.c \
 			src/init/init_mlx.c \
-			src/rendering/render_smoke.c \
+			src/init/init_debug_scene.c \
+			src/rendering/render_frame.c \
+			src/rendering/background.c \
+			src/rendering/draw_column.c \
+			src/rendering/raycast.c \
+			src/rendering/dda.c \
 			src/hooks/hooks.c \
+			src/movement/player_move.c \
+			src/movement/player_rotate.c \
+			src/movement/player_update.c \
+			src/movement/collision.c \
 			src/cleanup/free_mlx.c \
+			src/cleanup/clean_exit.c \
 			src/error_printing.c \
 			src/init/load_map.c \
-			src/parsing.c \
+			src/init/config_loader.c \
+			src/init/config_loader_utils.c \
+			src/init/map_parser.c \
+			src/init/map_parser_utils.c \
+			src/init/validate_map.c \
+			src/init/player_init.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 
@@ -80,8 +95,16 @@ $(OBJ_DIR)/%.o: %.c
 
 ARGS ?= maps/test.cub
 
+
+mlx:
+	@cd $(MLX_DIR) && git clone https://github.com/42Paris/minilibx-linux.git
+
 valgrind: $(NAME)
 	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
+
+mlxclean:
+	@rm -rf $(MLX_DIR)
+	@echo "MLX deleted"
 
 clean:
 	rm -rf $(OBJ_DIR)
