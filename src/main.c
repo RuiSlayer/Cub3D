@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:06:02 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 19:37:00 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/26 22:48:25 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int argc, char const **argv)
 	print_map(&cub);
 	player_init(&cub);
 	if (init_mlx(&cub))
+		return (free_cub(&cub), 1);
+	if (init_textures(&cub))
 		return (free_cub(&cub), 1);
 	setup_hooks(&cub);
 	render_frame(&cub);

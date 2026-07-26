@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
 /*   Updated: 2026/07/26 19:23:31 by slayer           ###   ########.fr       */
@@ -167,10 +167,13 @@ typedef struct s_textures
 //temporary drawing calculations
 typedef struct s_render
 {
-	int	draw_start; //first screen y-coordinate where the wall should be drawn
-	int	draw_end; //final screen y-coordinate for the wall
-	int	line_height; //projected height of the wall stripe
-	int	texture_x; //which vertical texture column should be sampled
+	int		draw_start; //first screen y-coordinate where the wall should be drawn
+	int		draw_end; //final screen y-coordinate for the wall
+	int		line_height; //projected height of the wall stripe
+	int		texture_x; //which vertical texture column should be sampled
+	int		shade;
+	double	step;
+	double	tex_pos;
 }	t_render;
 
 //player input used in loops as 0 or 1
@@ -269,7 +272,6 @@ void	init_ray(t_cub *cub, t_ray *ray, int x);
 void	init_dda(t_cub *cub, t_ray *ray);
 void	perform_dda(t_cub *cub, t_ray *ray);
 void	calculate_wall_projection(t_ray *ray, t_render *render);
-void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
 
 /*
 ** Player movement
@@ -282,6 +284,23 @@ void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 void	rotate_player(t_cub *cub, double angle);
 int		can_move_to(t_map *map, double x, double y);
+
+/*
+** Texture loading
+*/
+
+int		calculate_wall_x(t_cub *cub, t_ray *ray);
+int		calculate_texture_x(t_ray *ray, t_img *texture, double wall_x);
+int		get_texture_pixel(t_img *texture, int x, int y);
+void	init_texture_draw(t_render *render, t_img *texture);
+void	draw_textured_wall(t_cub *cub, t_ray *ray,
+		t_render *render, int screen_x);
+int 	load_texture(void *mlx, t_img *tex, char *path);
+int 	load_all_textures(t_cub *cub);
+t_img	*get_wall_texture(t_cub *cub, t_ray *ray);
+int		init_textures(t_cub *cub);
+int		shade_color(int color);
+
 
 /*
 ** Debug and Testing
