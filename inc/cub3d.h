@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 19:35:39 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/26 19:23:31 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ int	flood_fill_check(t_cub *cub);
 void	trim_trailing_blank_lines(char **lines, t_cub *cub);
 char	*skip_new_lines(int fd);
 void	player_init(t_cub *cub);
+// int		outside_map_val(t_cub *cub);
 
 /*
 ** Cleanup and exit
