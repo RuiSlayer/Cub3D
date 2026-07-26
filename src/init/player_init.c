@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 23:22:03 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/22 23:32:05 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/26 22:52:58 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void player_init_direc(t_cub *cub)
 	if(cub->map.spawn_dir == 'S')
 	{
 		cub->player.dir.x = 0;
-		cub->player.dir.y = 0;
+		cub->player.dir.y = 1;
 	}
 	if(cub->map.spawn_dir == 'E')
 	{
-		cub->player.dir.x = -1;
+		cub->player.dir.x = 1;
 		cub->player.dir.y = 0;
 	}
 	if(cub->map.spawn_dir == 'W')
 	{
 		cub->player.dir.x = -1;
-		cub->player.dir.y = -1;
+		cub->player.dir.y = 0;
 	}
 }
 

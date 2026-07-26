@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_loader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 18:27:48 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/21 18:33:57 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/26 22:37:05 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	set_texture_path(t_cub *cub, char **split_line)
 	cub->config.texture_path[dir] = ft_strdup(split_line[1]);
 	if (!cub->config.texture_path[dir])
 		return (-1);
+	ft_trim_newline(cub->config.texture_path[dir]);
 	cub->config.config_count++;
 	return (0);
 }
