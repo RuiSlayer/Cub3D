@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:01:32 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/26 19:45:19 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int	map_parser(t_cub *cub, int fd)
 
 void	print_map(t_cub *cub)
 {
+	// delete
 	int i;
 	for (i = 0; i < cub->map.height; i++)
 	{
