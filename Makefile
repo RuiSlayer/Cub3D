@@ -42,7 +42,6 @@ INCLUDES	= \
 SRCS		= \
 			src/main.c \
 			src/init/init_mlx.c \
-			src/init/init_debug_scene.c \
 			src/rendering/render_frame.c \
 			src/rendering/background.c \
 			src/rendering/draw_column.c \
@@ -53,7 +52,6 @@ SRCS		= \
 			src/movement/player_rotate.c \
 			src/movement/player_update.c \
 			src/movement/collision.c \
-			src/cleanup/free_mlx.c \
 			src/cleanup/clean_exit.c \
 			src/error_printing.c \
 			src/init/load_map.c \

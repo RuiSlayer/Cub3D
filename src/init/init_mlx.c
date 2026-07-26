@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:33:51 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/26 19:52:32 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 00:07:50 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	init_mlx(t_cub *cub)
 	cub->mlx.mlx = mlx_init();
 	if (!cub->mlx.mlx)
 		return (ft_dprintf(2, "Couldn't initiate MLX :(\n"), 1);
-	cub->mlx.win = mlx_new_window(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "First test");
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
+			WIN_WIDTH, WIN_HEIGHT, "First test");
 	if (!cub->mlx.win)
 		return (ft_dprintf(2, "Couldn't open MLX window\n"), 1);
 	cub->mlx.frame.img = mlx_new_image(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);

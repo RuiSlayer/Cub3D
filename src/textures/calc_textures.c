@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:52:29 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/26 22:11:16 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/26 23:58:27 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	calculate_wall_x(t_cub *cub, t_ray *ray)
 {
-	double wall_x;
+	double	wall_x;
 
 	if (ray->side == SIDE_X)
 		wall_x = cub->player.pos.y + ray->perp_wall_dist * ray->dir.y;
@@ -23,6 +23,7 @@ int	calculate_wall_x(t_cub *cub, t_ray *ray)
 	wall_x -= floor(wall_x);
 	return (wall_x);
 }
+
 int	calculate_texture_x(t_ray *ray, t_img *texture, double wall_x)
 {
 	int	texture_x;
@@ -32,8 +33,9 @@ int	calculate_texture_x(t_ray *ray, t_img *texture, double wall_x)
 		texture_x = texture->width - texture_x - 1;
 	if (ray->side == SIDE_Y && ray->dir.y < 0)
 		texture_x = texture->width - texture_x - 1;
-	return(texture_x);
+	return (texture_x);
 }
+
 int	get_texture_pixel(t_img *texture, int x, int y)
 {
 	char	*pixel;
