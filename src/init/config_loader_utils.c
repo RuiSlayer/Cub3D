@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_loader_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 18:32:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/22 23:07:34 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/27 00:04:49 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	check_file_name(char const *argv)
 	int		i;
 	int		j;
 	char	*extencion;
-//	int		fd;
 
 	if (argv[0] == '.')
 		return (ft_dprintf(2, "Error\nThe file can't be a hidden file\n"), 1);
@@ -34,10 +33,6 @@ int	check_file_name(char const *argv)
 	}
 	if (argv[i] == '/')
 		return (ft_dprintf(2, "Error\nThe file can't be a hidden file\n"), 1);
-/* 	fd = open(argv, 0x10000);
-	if (fd >= 0)
-		return (close(fd),
-			ft_dprintf(2, "Error\nThe file can't be a dir\n"), 1); */
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:19:03 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/26 20:28:38 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	load_map(char const *argv, t_cub *cub)
 	if (print_config_error(load_config(cub, fd)))
 		return (close(fd), 1);
 	ft_dprintf(2, "textures and colors saved with sucess!\n");
+	ft_dprintf(2, "texture: %s\n", cub->config.texture_path[0]);
 	if (print_map_error(map_parser(cub, fd)))
 		return (close(fd), 1);
 	close(fd);

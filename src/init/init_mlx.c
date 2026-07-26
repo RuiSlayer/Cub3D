@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:33:51 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:09:05 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 00:07:50 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ int	init_mlx(t_cub *cub)
 {
 	cub->mlx.mlx = mlx_init();
 	if (!cub->mlx.mlx)
-		return (printf("Couldn't initiate MLX :(\n"), 1);
-	cub->mlx.win = mlx_new_window(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "First test");
+		return (ft_dprintf(2, "Couldn't initiate MLX :(\n"), 1);
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
+			WIN_WIDTH, WIN_HEIGHT, "First test");
 	if (!cub->mlx.win)
-		return (printf("Couldn't open MLX window\n"), 1);
+		return (ft_dprintf(2, "Couldn't open MLX window\n"), 1);
 	cub->mlx.frame.img = mlx_new_image(cub->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!cub->mlx.frame.img)
-		return (printf("Couldn't build frame\n"), 1);
+		return (ft_dprintf(2, "Couldn't build frame\n"), 1);
 	cub->mlx.frame.addr = mlx_get_data_addr(cub->mlx.frame.img,
 			&cub->mlx.frame.bpp,
 			&cub->mlx.frame.line_len,
 			&cub->mlx.frame.endian);
 	if (!cub->mlx.frame.addr)
-		return (printf("Couldn't find address\n"), 1);
+		return (ft_dprintf(2, "Couldn't find address\n"), 1);
 	return (0);
 }
 

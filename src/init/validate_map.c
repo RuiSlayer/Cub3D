@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 18:24:33 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:16:29 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 00:26:06 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,30 @@ static int	is_valid_tile(t_cub *cub, char **grid, int x, int y)
 	return (1);
 }
 
+static int	flood_fill_loop(int *top, t_cub *cub, char **grid, t_point *stack)
+{
+	t_point	p;
+
+	*top = *top - 1;
+	p = stack[*top];
+	if (!is_valid_tile(cub, grid, p.x, p.y))
+		return (7);
+	if (grid[p.y][p.x] == '1' || grid[p.y][p.x] == 'V')
+		return (-1);
+	grid[p.y][p.x] = 'V';
+	stack[(*top)++] = (t_point){p.x + 1, p.y};
+	stack[(*top)++] = (t_point){p.x - 1, p.y};
+	stack[(*top)++] = (t_point){p.x, p.y + 1};
+	stack[(*top)++] = (t_point){p.x, p.y - 1};
+	return (0);
+}
+
 int	flood_fill_check(t_cub *cub)
 {
 	char	**grid;
 	t_point	*stack;
-	t_point	p;
 	int		top;
+	int		code;
 
 	grid = dup_grid(cub->map.grid, cub->map.height);
 	if (!grid)
@@ -62,17 +80,11 @@ int	flood_fill_check(t_cub *cub)
 	top++;
 	while (top > 0)
 	{
-		top--;
-		p = stack[top];
-		if (!is_valid_tile(cub, grid, p.x, p.y))
-			return (free(stack), free_map_lines(grid, cub->map.height), 7);
-		if (grid[p.y][p.x] == '1' || grid[p.y][p.x] == 'V')
+		code = flood_fill_loop(&top, cub, grid, stack);
+		if (code == -1)
 			continue ;
-		grid[p.y][p.x] = 'V';
-		stack[top++] = (t_point){p.x + 1, p.y};
-		stack[top++] = (t_point){p.x - 1, p.y};
-		stack[top++] = (t_point){p.x, p.y + 1};
-		stack[top++] = (t_point){p.x, p.y - 1};
+		if (code == 7)
+			return (free(stack), free_map_lines(grid, cub->map.height), 7);
 	}
 	return (free(stack), free_map_lines(grid, cub->map.height), 0);
 }
