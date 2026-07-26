@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 00:33:39 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/17 00:41:40 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/27 00:01:13 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	draw_background(t_cub *cub)
 	int	x;
 	int	y;
 	int	color;
-
 
 	y = 0;
 	while (y < WIN_HEIGHT)

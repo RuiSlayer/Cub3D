@@ -3,51 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 19:06:10 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/26 22:47:30 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/26 23:57:28 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int load_texture(void *mlx, t_img *tex, char *path)
+int	load_texture(void *mlx, t_img *tex, char *path)
 {
-    tex->img = mlx_xpm_file_to_image(
-        mlx,
-        path,
-        &tex->width,
-        &tex->height);
-    if (!tex->img)
-        return (FAILURE);
-    tex->addr = mlx_get_data_addr(
-        tex->img,
-        &tex->bpp,
-        &tex->line_len,
-		&tex->endian);
-    return (SUCCESS);
+	tex->img = mlx_xpm_file_to_image(
+			mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
+		return (FAILURE);
+	tex->addr = mlx_get_data_addr(
+			tex->img, &tex->bpp, &tex->line_len, &tex->endian);
+	return (SUCCESS);
 }
 
-int load_all_textures(t_cub *cub)
+int	load_all_textures(t_cub *cub)
 {
 	if (load_texture(cub->mlx.mlx,
-		&cub->textures.wall[NO],
-		cub->config.texture_path[NO]))
+			&cub->textures.wall[NO], cub->config.texture_path[NO]))
 		return (FAILURE);
 	if (load_texture(cub->mlx.mlx,
-		&cub->textures.wall[SO],
-		cub->config.texture_path[SO]))
+			&cub->textures.wall[SO], cub->config.texture_path[SO]))
 		return (FAILURE);
 	if (load_texture(cub->mlx.mlx,
-		&cub->textures.wall[EA],
-		cub->config.texture_path[EA]))
+			&cub->textures.wall[EA], cub->config.texture_path[EA]))
 		return (FAILURE);
 	if (load_texture(cub->mlx.mlx,
-		&cub->textures.wall[WE],
-		cub->config.texture_path[WE]))
+			&cub->textures.wall[WE], cub->config.texture_path[WE]))
 		return (FAILURE);
-	return(SUCCESS);
+	return (SUCCESS);
 }
 
 t_img	*get_wall_texture(t_cub *cub, t_ray *ray)
@@ -68,7 +58,7 @@ t_img	*get_wall_texture(t_cub *cub, t_ray *ray)
 		else
 			texture = &cub->textures.wall[SO];
 	}
-	return(texture);
+	return (texture);
 }
 
 int	init_textures(t_cub *cub)

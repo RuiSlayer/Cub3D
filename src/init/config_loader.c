@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_loader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 18:27:48 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/26 20:16:44 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 00:03:17 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static int	rgb2hex(char *rgb)
 static int	set_color(t_cub *cub, char **split_line)
 {
 	int	rgb;
+
 	if (ft_split_len(split_line) != 2)
 		return (-1);
 	rgb = rgb2hex(split_line[1]);
