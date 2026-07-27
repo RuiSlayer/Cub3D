@@ -6,12 +6,11 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:19:03 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 20:11:16 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdio.h>
 
 static int	is_config(char *type)
 {
@@ -40,6 +39,7 @@ static int	load_config_loop(t_cub *cub, int fd)
 		return (2);
 	if (ft_strcmp(line, "\n") == 0)
 		return (free(line), 0);
+	ft_trim_trailing_spaces(line);
 	split_line = ft_split(line, ' ');
 	free(line);
 	if (!split_line)
@@ -74,15 +74,13 @@ int	load_map(char const *argv, t_cub *cub)
 		return (1);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-		return (1);
+		return (2);
 	if (print_config_error(load_config(cub, fd)))
-		return (close(fd), 1);
-	ft_dprintf(2, "textures and colors saved with sucess!\n");
+		return (close(fd), 3);
 	if (print_map_error(map_parser(cub, fd)))
-		return (close(fd), 1);
+		return (close(fd), 4);
 	close(fd);
 	if (print_map_error(flood_fill_check(cub)))
-		return (1);
-	ft_dprintf(2, "map loaded with sucess!\n");
+		return (5);
 	return (0);
 }

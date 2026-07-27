@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 19:35:39 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 01:12:23 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 ** Window configuration
 */
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 768
 
 /*
 ** Return values
@@ -90,7 +90,7 @@ typedef enum e_direction
 	SO,
 	WE,
 	EA,
-	DIRECTION_COUNT //always == 4, can be used in functions
+	DIRECTION_COUNT
 }	t_direction;
 
 typedef struct s_point
@@ -134,7 +134,6 @@ typedef struct s_player
 	double	rot_speed;
 }	t_player;
 
-
 typedef struct s_map
 {
 	char	**grid;
@@ -147,15 +146,15 @@ typedef struct s_map
 //temporary raycasting calculations
 typedef struct s_ray
 {
-	double	camera_x; //current screen column into camera coordinates
-	t_vec2	dir; //direction of the current ray
-	t_point	map; //current grid cell examined by the DDA algorithm
-	t_vec2	side_dist; //distance from the ray origin to the next grid boundary
-	t_vec2	delta_dist; //how far the ray travels between consecutive grid-line crossings
-	t_point	step; //whether DDA moves positively or negatively through the grid
+	double	camera_x;
+	t_vec2	dir;
+	t_point	map;
+	t_vec2	side_dist;
+	t_vec2	delta_dist;
+	t_point	step;
 	double	perp_wall_dist;
-	int		side; //kind of grid boundary was crossed when the wall was hit
-	int		hit; //if a wall has been hit or not
+	int		side;
+	int		hit;
 }	t_ray;
 
 //collection of four texture images
@@ -167,10 +166,13 @@ typedef struct s_textures
 //temporary drawing calculations
 typedef struct s_render
 {
-	int	draw_start; //first screen y-coordinate where the wall should be drawn
-	int	draw_end; //final screen y-coordinate for the wall
-	int	line_height; //projected height of the wall stripe
-	int	texture_x; //which vertical texture column should be sampled
+	int		draw_start;
+	int		draw_end;
+	int		line_height;
+	int		texture_x;
+	int		shade;
+	double	step;
+	double	tex_pos;
 }	t_render;
 
 //player input used in loops as 0 or 1
@@ -207,85 +209,94 @@ typedef struct s_cub
 /*
 ** parcing and map loading
 */
-int	check_file_name(char const *argv);
-int	load_map(char const *argv, t_cub *cub);
-int	set_config(t_cub *cub, char **split_line);
-int	has_xpm_ext(char *path);
+int			check_file_name(char const *argv);
+int			load_map(char const *argv, t_cub *cub);
+int			set_config(t_cub *cub, char **split_line);
+int			has_xpm_ext(char *path);
 t_direction	get_direction(char *token);
-int	print_config_error(int code);
-int	print_map_error(int code);
-int	map_parser(t_cub *cub, int fd);
-int	is_wall_or_void(t_map *map, int x, int y);
-int	is_valid_map(t_cub *cub);
-void	free_map_lines(char **lines, int count);
-int	flood_fill_check(t_cub *cub);
-void	trim_trailing_blank_lines(char **lines, t_cub *cub);
-char	*skip_new_lines(int fd);
-void	player_init(t_cub *cub);
+int			print_config_error(int code);
+int			print_map_error(int code);
+int			map_parser(t_cub *cub, int fd);
+int			is_wall_or_void(t_map *map, int x, int y);
+int			is_valid_map(t_cub *cub);
+void		free_map_lines(char **lines, int count);
+int			flood_fill_check(t_cub *cub);
+void		trim_trailing_blank_lines(char **lines, t_cub *cub);
+char		*skip_new_lines(int fd);
+void		player_init(t_cub *cub);
 
 /*
 ** Cleanup and exit
 */
 
-void	free_config(t_config *config);
-void	free_textures(t_mlx *mlx, t_textures *textures);
-void	free_mlx(t_mlx *mlx);
-void	free_cub(t_cub *cub);
-void	free_map(t_map *map);
-int		close_game(t_cub *cub);
+void		free_config(t_config *config);
+void		free_textures(t_mlx *mlx, t_textures *textures);
+void		free_mlx(t_mlx *mlx);
+void		free_cub(t_cub *cub);
+void		free_map(t_map *map);
+int			close_game(t_cub *cub);
 
 /*
 ** Hooks
 */
 
-void	setup_hooks(t_cub *cub);
-int		handle_keypress(int keycode, void *param);
-int		handle_keyrelease(int keycode, void *param);
-int		game_loop(void *param);
+void		setup_hooks(t_cub *cub);
+int			handle_keypress(int keycode, void *param);
+int			handle_keyrelease(int keycode, void *param);
+int			game_loop(void *param);
 
 /*
 ** Initialization
 */
-void	init_map_vars(t_cub *cub);
-int		init_cub(t_cub *cub);
-int		init_mlx(t_cub *cub);
+void		init_map_vars(t_cub *cub);
+int			init_cub(t_cub *cub);
+int			init_mlx(t_cub *cub);
 
 /*
 ** Rendering
 */
 
-void	draw_background(t_cub *cub);
-void	render_frame(t_cub *cub);
-void	render_wall_columns(t_cub *cub);
-void	cast_ray_for_column(t_cub *cub, int x);
-void	put_pixel(t_img *img, int x, int y, int color);
+void		draw_background(t_cub *cub);
+void		render_frame(t_cub *cub);
+void		render_wall_columns(t_cub *cub);
+void		cast_ray_for_column(t_cub *cub, int x);
+void		put_pixel(t_img *img, int x, int y, int color);
 
 /*
 ** Raycasting
 */
 
-void	init_ray(t_cub *cub, t_ray *ray, int x);
-void	init_dda(t_cub *cub, t_ray *ray);
-void	perform_dda(t_cub *cub, t_ray *ray);
-void	calculate_wall_projection(t_ray *ray, t_render *render);
-void	draw_wall_column(t_cub *cub, t_ray *ray, t_render *render, int x);
+void		init_ray(t_cub *cub, t_ray *ray, int x);
+void		init_dda(t_cub *cub, t_ray *ray);
+void		perform_dda(t_cub *cub, t_ray *ray);
+void		calculate_wall_projection(t_ray *ray, t_render *render);
 
 /*
 ** Player movement
 */
 
-void	update_player(t_cub *cub);
-void	move_forward(t_cub *cub);
-void	move_backward(t_cub *cub);
-void	move_left(t_cub *cub);
-void	move_right(t_cub *cub);
-void	rotate_player(t_cub *cub, double angle);
-int		can_move_to(t_map *map, double x, double y);
+void		update_player(t_cub *cub);
+void		move_forward(t_cub *cub);
+void		move_backward(t_cub *cub);
+void		move_left(t_cub *cub);
+void		move_right(t_cub *cub);
+void		rotate_player(t_cub *cub, double angle);
+int			can_move_to(t_map *map, double x, double y);
 
 /*
-** Debug and Testing
+** Texture loading
 */
-void	print_map(t_cub *cub);
-int	init_debug_scene(t_cub *cub);
+
+double		calculate_wall_x(t_cub *cub, t_ray *ray);
+int			calculate_texture_x(t_ray *ray, t_img *texture, double wall_x);
+int			get_texture_pixel(t_img *texture, int x, int y);
+void		init_texture_draw(t_render *render, t_img *texture);
+void		draw_textured_wall(t_cub *cub, t_ray *ray,
+				t_render *render, int screen_x);
+int			load_texture(void *mlx, t_img *tex, char *path);
+int			load_all_textures(t_cub *cub);
+t_img		*get_wall_texture(t_cub *cub, t_ray *ray);
+int			init_textures(t_cub *cub);
+int			shade_color(int color);
 
 #endif

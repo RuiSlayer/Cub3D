@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 18:27:48 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/21 18:33:57 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 20:14:56 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static int	set_texture_path(t_cub *cub, char **split_line)
 
 	if (ft_split_len(split_line) != 2)
 		return (-1);
-	if (!has_xpm_ext(split_line[1]))
-		return (4);
 	dir = get_direction(split_line[0]);
 	if (dir == DIRECTION_COUNT)
 		return (-1);
@@ -40,7 +38,6 @@ static int	is_valid_number(char *str)
 	if (!str || !str[0])
 		return (0);
 	i = 0;
-	ft_trim_newline(str);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

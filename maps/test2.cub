@@ -1,15 +1,15 @@
 NO textures/walls.xpm
 SO textures/walls.xpm
 WE textures/walls.xpm
-EA textures/walls.xpm
+EA textures/doom.xpm
 
 F 220,100,0
 C 225,30,0
 
-      0011111111
-    0000000001
-1001000001
-1000000001
-10000N0001
-1000000001
-1111111111
+111
+101
+101
+101
+1N1
+101
+111

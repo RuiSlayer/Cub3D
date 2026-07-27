@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:17:15 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 20:01:32 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 20:14:16 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,4 @@ int	map_parser(t_cub *cub, int fd)
 	}
 	cub->map.grid = lines;
 	return (0);
-}
-
-void	print_map(t_cub *cub)
-{
-	int i;
-	for (i = 0; i < cub->map.height; i++)
-	{
-		printf("line %i: %s\n",i+1, cub->map.grid[i]);
-	}
 }

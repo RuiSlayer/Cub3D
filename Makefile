@@ -42,7 +42,6 @@ INCLUDES	= \
 SRCS		= \
 			src/main.c \
 			src/init/init_mlx.c \
-			src/init/init_debug_scene.c \
 			src/rendering/render_frame.c \
 			src/rendering/background.c \
 			src/rendering/draw_column.c \
@@ -53,7 +52,6 @@ SRCS		= \
 			src/movement/player_rotate.c \
 			src/movement/player_update.c \
 			src/movement/collision.c \
-			src/cleanup/free_mlx.c \
 			src/cleanup/clean_exit.c \
 			src/error_printing.c \
 			src/init/load_map.c \
@@ -63,6 +61,9 @@ SRCS		= \
 			src/init/map_parser_utils.c \
 			src/init/validate_map.c \
 			src/init/player_init.c \
+			src/textures/calc_textures.c \
+			src/textures/draw_textures.c \
+			src/textures/load_textures.c \
 			libs/ft_get_next_line/get_next_line.c \
 			libs/ft_get_next_line/get_next_line_utils.c
 

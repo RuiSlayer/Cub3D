@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:21:47 by rucosta           #+#    #+#             */
-/*   Updated: 2026/07/22 02:18:27 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 19:51:08 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	ft_trim_newline(char *str);
 void	ft_free_split(char **var_val);
 int		ft_split_len(char **split);
 char	**ft_realloc_array(char **old, int old_capacity, int new_capacity);
+void	ft_trim_trailing_spaces(char *str);
 #endif
