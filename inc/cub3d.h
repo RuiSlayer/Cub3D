@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:53:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/27 00:31:22 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 01:12:23 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 ** Window configuration
 */
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 768
 
 /*
 ** Return values
@@ -287,7 +287,7 @@ int			can_move_to(t_map *map, double x, double y);
 ** Texture loading
 */
 
-int			calculate_wall_x(t_cub *cub, t_ray *ray);
+double		calculate_wall_x(t_cub *cub, t_ray *ray);
 int			calculate_texture_x(t_ray *ray, t_img *texture, double wall_x);
 int			get_texture_pixel(t_img *texture, int x, int y);
 void		init_texture_draw(t_render *render, t_img *texture);

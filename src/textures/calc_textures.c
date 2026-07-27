@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   calc_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:52:29 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/26 23:58:27 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 01:11:47 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	calculate_wall_x(t_cub *cub, t_ray *ray)
+double	calculate_wall_x(t_cub *cub, t_ray *ray)
 {
 	double	wall_x;
 

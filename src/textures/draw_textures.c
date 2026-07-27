@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:54:05 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/26 22:37:55 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/27 01:16:16 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_texture_pixels(t_cub *cub, t_render *render,
 }
 
 void	draw_textured_wall(t_cub *cub, t_ray *ray,
-	t_render *render, int screen_x)
+		t_render *render, int screen_x)
 {
 	t_img	*texture;
 	double	wall_x;
