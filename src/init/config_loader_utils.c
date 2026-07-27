@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 18:32:56 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/27 00:04:49 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 20:12:59 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ int	check_file_name(char const *argv)
 	if (argv[i] == '/')
 		return (ft_dprintf(2, "Error\nThe file can't be a hidden file\n"), 1);
 	return (0);
-}
-
-int	has_xpm_ext(char *path)
-{
-	int	len;
-
-	len = ft_strlen(path);
-	if (len < 5)
-		return (0);
-	return (ft_strcmp(path + len - 4, ".xpm"));
 }
 
 t_direction	get_direction(char *token)
