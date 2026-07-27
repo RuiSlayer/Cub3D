@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 19:06:10 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/26 23:57:28 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 10:23:11 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_img	*get_wall_texture(t_cub *cub, t_ray *ray)
 
 	if (ray->side == SIDE_X)
 	{
-		if (ray->step.x > 0)
+		if (ray->step.x < 0)
 			texture = &cub->textures.wall[WE];
 		else
 			texture = &cub->textures.wall[EA];

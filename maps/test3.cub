@@ -1,7 +1,7 @@
-NO ./textures/doom.xpm
-SO ./textures/rui.xpm
-WE ./textures/walls.xpm
-EA ./textures/kiko.xpm
+NO ./textures/stuck_.xpm
+SO ./textures/stuck_.xpm
+WE ./textures/stuck_.xpm
+EA ./textures/stuck_.xpm
 
 F 80,80,80
 C 135,206,235
