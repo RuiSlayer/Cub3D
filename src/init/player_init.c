@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 23:22:03 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/27 00:02:47 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 02:47:18 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	player_init(t_cub *cub)
 	cub->player.plane.x = 0.66;
 	cub->player.plane.y = 0.0;
 	cub->player.move_speed = 0.03;
-	cub->player.rot_speed = 0.01;
+	cub->player.rot_speed = 0.02;
 }
