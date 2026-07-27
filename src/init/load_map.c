@@ -6,12 +6,11 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/26 20:28:38 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 02:43:58 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdio.h>
 
 static int	is_config(char *type)
 {
@@ -74,16 +73,16 @@ int	load_map(char const *argv, t_cub *cub)
 		return (1);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-		return (1);
+		return (2);
 	if (print_config_error(load_config(cub, fd)))
-		return (close(fd), 1);
+		return (close(fd), 3);
 	ft_dprintf(2, "textures and colors saved with sucess!\n");
 	ft_dprintf(2, "texture: %s\n", cub->config.texture_path[0]);
 	if (print_map_error(map_parser(cub, fd)))
-		return (close(fd), 1);
+		return (close(fd), 4);
 	close(fd);
 	if (print_map_error(flood_fill_check(cub)))
-		return (1);
+		return (5);
 	ft_dprintf(2, "map loaded with sucess!\n");
 	return (0);
 }
