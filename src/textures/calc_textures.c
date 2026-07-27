@@ -6,7 +6,7 @@
 /*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:52:29 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/27 01:11:47 by fgameiro         ###   ########.fr       */
+/*   Updated: 2026/07/27 10:40:15 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	calculate_texture_x(t_ray *ray, t_img *texture, double wall_x)
 	int	texture_x;
 
 	texture_x = (int)(wall_x * texture->width);
-	if (ray->side == SIDE_X && ray->dir.x > 0)
+	if (ray->side == SIDE_X && ray->step.x < 0)
 		texture_x = texture->width - texture_x - 1;
-	if (ray->side == SIDE_Y && ray->dir.y < 0)
+	if (ray->side == SIDE_Y && ray->step.y > 0)
 		texture_x = texture->width - texture_x - 1;
 	return (texture_x);
 }
