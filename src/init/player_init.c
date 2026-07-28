@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 23:22:03 by fgameiro          #+#    #+#             */
-/*   Updated: 2026/07/27 23:02:08 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/28 02:31:35 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	player_init(t_cub *cub)
 	cub->player.pos.x = cub->map.spawn_pos.x + 0.5;
 	cub->player.pos.y = cub->map.spawn_pos.y + 0.5;
 	player_init_direc(cub);
-	cub->player.plane.x = 0.66;
-	cub->player.plane.y = 0.0;
-	cub->player.move_speed = 0.03;
-	cub->player.rot_speed = 0.02;
+	cub->player.plane.x = -cub->player.dir.y * 0.66;
+	cub->player.plane.y = cub->player.dir.x * 0.66;
+	cub->player.move_speed = 0.004;
+	cub->player.rot_speed = 0.002;
 }

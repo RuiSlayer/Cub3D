@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_printing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 13:22:24 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/27 18:08:01 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/28 00:14:52 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	print_config_error(int code)
 		return (ft_dprintf(2, "Error\nDuplicate setting for ceiling/floor!\n"));
 	if (code == 9)
 		return (ft_dprintf(2, "Error\nDuplicate direction!\n"));
+	if (code == 10)
+		return (ft_dprintf(2, "Error\nSpaces found on empty line!\n"));
 	return (0);
 }
 

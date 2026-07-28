@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_config.c                                      :+:      :+:    :+:   */
+/*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 19:24:19 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/23 19:35:23 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/27 23:30:47 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,8 @@ void	free_mlx(t_mlx *mlx)
 	}
 	if (mlx->mlx)
 	{
-# if defined(__linux__)
 		mlx_destroy_display(mlx->mlx);
 		free(mlx->mlx);
-# endif
 		mlx->mlx = NULL;
 	}
 }

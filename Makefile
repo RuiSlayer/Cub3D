@@ -1,12 +1,12 @@
 NAME		= cub3D
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g -O3 -std=gnu17
+CFLAGS		= -Wall -Wextra -Werror -g -O3 -march=native -flto -ftree-vectorize -funroll-loops -ffast-math
 
 UNAME_S		:= $(shell uname -s)
 
-LIBFT_DIR		= libs/42libft
-PRINTF_DIR		= libs/ft_dprintf
+LIBFT_DIR	= libs/42libft
+PRINTF_DIR	= libs/ft_dprintf
 
 LIBFT		= $(LIBFT_DIR)/libft.a
 PRINTF		= $(PRINTF_DIR)/libftprintf.a
@@ -34,42 +34,51 @@ $(error Unsupported operating system)
 endif
 
 INCLUDES	= \
-			-Iinc \
-			-I$(MLX_DIR) \
-			-I$(LIBFT_DIR) \
-			-I$(PRINTF_DIR)
+	-Iinc \
+	-I$(MLX_DIR) \
+	-I$(LIBFT_DIR) \
+	-I$(PRINTF_DIR)
 
 SRCS		= \
-			src/main.c \
-			src/init/init_mlx.c \
-			src/rendering/render_frame.c \
-			src/rendering/background.c \
-			src/rendering/draw_column.c \
-			src/rendering/raycast.c \
-			src/rendering/dda.c \
-			src/hooks/hooks.c \
-			src/movement/player_move.c \
-			src/movement/player_rotate.c \
-			src/movement/player_update.c \
-			src/movement/collision.c \
-			src/cleanup/clean_exit.c \
-			src/error_printing.c \
-			src/init/load_map.c \
-			src/init/config_loader.c \
-			src/init/config_loader_utils.c \
-			src/init/map_parser.c \
-			src/init/map_parser_utils.c \
-			src/init/validate_map.c \
-			src/init/player_init.c \
-			src/textures/calc_textures.c \
-			src/textures/draw_textures.c \
-			src/textures/load_textures.c \
-			libs/ft_get_next_line/get_next_line.c \
-			libs/ft_get_next_line/get_next_line_utils.c
+	src/main.c \
+	src/init/init_mlx.c \
+	src/rendering/render_frame.c \
+	src/rendering/background.c \
+	src/rendering/draw_column.c \
+	src/rendering/raycast.c \
+	src/rendering/dda.c \
+	src/hooks/hooks.c \
+	src/movement/player_move.c \
+	src/movement/player_rotate.c \
+	src/movement/player_update.c \
+	src/movement/collision.c \
+	src/cleanup/clean_exit.c \
+	src/error_printing.c \
+	src/init/load_map.c \
+	src/init/config_loader.c \
+	src/init/config_loader_utils.c \
+	src/init/map_parser.c \
+	src/init/map_parser_utils.c \
+	src/init/validate_map.c \
+	src/init/player_init.c \
+	src/textures/calc_textures.c \
+	src/textures/draw_textures.c \
+	src/textures/load_textures.c \
+	libs/ft_get_next_line/get_next_line.c \
+	libs/ft_get_next_line/get_next_line_utils.c
 
 OBJ_DIR		= build
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
-VALGRIND = valgrind --trace-children=yes --show-leak-kinds=all --leak-check=full --track-origins=yes -s --track-fds=all
+
+VALGRIND	= valgrind \
+	--trace-children=yes \
+	--show-leak-kinds=all \
+	--leak-check=full \
+	--track-origins=yes \
+	-s \
+	--track-fds=all
+
+ARGS ?= maps/test3.cub
 
 all: $(NAME)
 
@@ -88,24 +97,21 @@ $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
 $(MLX):
-	$(MAKE) -C $(MLX_DIR) CFLAGS+="$(MLX_CFLAGS)"
+	$(MAKE) -C $(MLX_DIR) CFLAGS+=" $(MLX_CFLAGS)"
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(MLX_CFLAGS) $(INCLUDES) -c $< -o $@
 
-ARGS ?= maps/test.cub
-
-
 mlx:
-	@cd $(MLX_DIR) && git clone https://github.com/42Paris/minilibx-linux.git
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
+	else \
+		echo "MiniLibX already exists."; \
+	fi
 
 valgrind: $(NAME)
 	$(VALGRIND) ./$(NAME) $(ARGS) 2>&1 | tee valgrind.log
-
-mlxclean:
-	@rm -rf $(MLX_DIR)
-	@echo "MLX deleted"
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -118,6 +124,9 @@ fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(PRINTF_DIR) fclean
 
+mlxclean:
+	rm -rf $(MLX_DIR)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx mlxclean valgrind

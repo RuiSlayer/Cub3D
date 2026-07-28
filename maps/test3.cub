@@ -1,6 +1,6 @@
-NO ./textures/stuck_.xpm
-SO ./textures/stuck_.xpm
-WE ./textures/stuck_.xpm
+NO ./textures/kiko.xpm
+SO ./textures/rui.xpm
+WE ./textures/doom.xpm
 EA ./textures/stuck_.xpm
 
 F 80,80,80

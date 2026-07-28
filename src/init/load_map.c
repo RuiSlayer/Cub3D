@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgameiro <fgameiro@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/14 01:31:43 by slayer            #+#    #+#             */
-/*   Updated: 2026/07/27 20:11:16 by slayer           ###   ########.fr       */
+/*   Updated: 2026/07/28 00:12:56 by fgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	load_config_loop(t_cub *cub, int fd)
 	if (ft_strcmp(line, "\n") == 0)
 		return (free(line), 0);
 	ft_trim_trailing_spaces(line);
+	if (line[0] == '\0')
+		return (free(line), 10);
 	split_line = ft_split(line, ' ');
 	free(line);
 	if (!split_line)
